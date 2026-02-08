@@ -1,0 +1,46 @@
+{
+  "name": "agent-safety-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Autonomous Agent Safety Monitor — OpenClaw agent for Base blockchain",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "agent": "npx tsx src/index.ts",
+    "agent:once": "npx tsx src/index.ts --once",
+    "chain": "yarn workspace @se-2/hardhat chain",
+    "fork": "yarn workspace @se-2/hardhat fork",
+    "compile": "yarn workspace @se-2/hardhat compile",
+    "deploy": "yarn workspace @se-2/hardhat deploy",
+    "test": "yarn workspace @se-2/hardhat test",
+    "start": "yarn workspace @se-2/nextjs dev",
+    "verify": "yarn workspace @se-2/hardhat verify"
+  },
+  "keywords": [
+    "openclaw",
+    "base",
+    "agent",
+    "safety",
+    "monitor",
+    "erc8004"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.13.4",
+    "dotenv": "^17.2.4",
+    "ethers": "^6.16.0"
+  },
+  "packageManager": "yarn@3.2.3",
+  "engines": {
+    "node": ">=20.18.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

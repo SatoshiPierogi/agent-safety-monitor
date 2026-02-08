@@ -1,0 +1,36 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/install-state.gz
+.pnp.*
+
+# Build
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs (keep directory structure, ignore contents)
+logs/daily/*.md
+
+# Hardhat / Scaffold-ETH 2
+packages/hardhat/cache/
+packages/hardhat/artifacts/
+packages/hardhat/node_modules/
+packages/nextjs/.next/
+packages/nextjs/node_modules/
+
+# OpenClaw state (deployment only — local state stays in ~/.openclaw/)
+.openclaw-state/

@@ -279,6 +279,40 @@ Each skill lives in `skills/<name>/` with a `SKILL.md` (tool docs for the agent)
 - **`skills/agent-enforcement/`** — `update_reputation_onchain`, `slash_agent_stake`, `mint_safety_badge`, `revoke_safety_badge`. Interacts with smart contracts via ethers.js. Retry logic: max 3 attempts with exponential backoff.
 - **`skills/erc8004-registration/`** — sourced from [openclaw-skills repo](https://github.com/BankrBot/openclaw-skills)
 
+### ERC-8004 Integration (`src/erc8004-integration.ts`)
+
+Our agent integrates with the live ERC-8004 Trustless Agents protocol on Base — **the** standard for agent identity and reputation on-chain.
+
+**Protocol Stats (Base):** 3,643+ registered agents, 5,447+ feedbacks
+
+**Registry Contracts (same address on all EVM chains):**
+- Identity Registry: `0x8004A169FB4a3325136EB29fA0ceB6D2e539a432`
+- Reputation Registry: `0x8004BAa17C55a88189AE136b182e5fdA19dE9b63`
+
+**How We Integrate:**
+| Function | What It Does | When Called |
+|----------|-------------|-------------|
+| `discoverAgents()` | Fetches agents from 8004scan.io API | Phase 0 of heartbeat |
+| `getAgentReputation(agentId)` | Reads on-chain feedback summary | Analysis phase |
+| `submitSafetyFeedback(agentId, score, details)` | Writes safety score to Reputation Registry via `giveFeedback()` | After enforcement |
+| `registerSelf(agentURI)` | Registers our agent on Identity Registry | One-time setup |
+| `lookupAgentByAddress(address)` | Maps wallet address to ERC-8004 token ID | Discovery phase |
+
+**Feedback format:** `giveFeedback(agentId, score, 0, "safety-score", "agent-safety-monitor", "", "", hash)`
+- `value`: int128 score (0–1000)
+- `valueDecimals`: 0 (integer)
+- `tag1`: "safety-score" — identifies our feedback category
+- `tag2`: "agent-safety-monitor" — identifies us as the submitter
+- `feedbackHash`: keccak256 of the details string
+
+**ERC-8004 Explorer/Scanner Resources:**
+- https://www.8004scan.io/ — Primary explorer, our discovery API source
+- https://agentscan.info/ — Agent browser + no-code registration
+- https://8004agents.ai/ — Agent browser + reputation data
+- https://www.trust8004.xyz/ — Trust agent registration + browsing
+- EIP spec: https://eips.ethereum.org/EIPS/eip-8004
+- Contracts: https://github.com/erc-8004/erc-8004-contracts
+
 ### Smart Contracts (Scaffold-ETH 2, in `packages/hardhat/`)
 All Solidity ^0.8.24, using OpenZeppelin 5.0.x with AccessControl (roles: SCORE_UPDATER, SLASHER, MINTER, ADMIN).
 

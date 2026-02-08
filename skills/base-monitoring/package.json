@@ -1,0 +1,9 @@
+{
+  "name": "base-monitoring",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.ts",
+  "dependencies": {
+    "ethers": "^6.13.0"
+  }
+}

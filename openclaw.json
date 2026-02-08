@@ -1,0 +1,86 @@
+{
+  // OpenClaw Agent Configuration — Agent Safety Monitor
+  // JSON5 format: comments and trailing commas allowed
+
+  agents: {
+    defaults: {
+      workspace: "./workspace",
+      skipBootstrap: true,              // Pre-seeded workspace — don't overwrite our files
+      bootstrapMaxChars: 20000,
+      userTimezone: "UTC",
+
+      model: {
+        primary: "anthropic/claude-opus-4-6",
+        fallbacks: ["anthropic/claude-sonnet-4-5-20250929"],
+      },
+
+      thinkingDefault: "medium",
+      timeoutSeconds: 600,
+      maxConcurrent: 3,
+      contextTokens: 200000,
+
+      heartbeat: {
+        every: "6h",                    // 6-hour monitoring cycle
+        model: "anthropic/claude-opus-4-6",
+        target: "none",                 // No channel delivery — agent posts via custom skills
+        prompt: "Read HEARTBEAT.md and execute the monitoring cycle. Follow it strictly. If nothing needs attention, reply HEARTBEAT_OK.",
+        ackMaxChars: 300,
+        includeReasoning: false,
+        activeHours: { start: "00:00", end: "23:59", timezone: "UTC" },
+      },
+
+      sandbox: {
+        mode: "off",                    // Skills need full access for onchain interactions
+      },
+
+      subagents: {
+        model: "anthropic/claude-sonnet-4-5-20250929",
+        maxConcurrent: 2,
+      },
+
+      compaction: {
+        mode: "default",
+        memoryFlush: { enabled: true, softThresholdTokens: 4000 },
+      },
+
+      contextPruning: { mode: "adaptive" },
+    },
+  },
+
+  skills: {
+    load: {
+      extraDirs: ["./skills"],
+      watch: true,
+      watchDebounceMs: 250,
+    },
+    entries: {
+      "base-monitoring": {
+        enabled: true,
+        env: { BASE_RPC_URL: "${BASE_RPC_URL}" },
+      },
+      "reputation-scoring": {
+        enabled: true,
+        env: {
+          AIXBT_API_KEY: "${AIXBT_API_KEY}",
+          NANSEN_API_KEY: "${NANSEN_API_KEY}",
+          ELFA_API_KEY: "${ELFA_API_KEY}",
+        },
+      },
+      "agent-enforcement": {
+        enabled: true,
+        env: {
+          BASE_RPC_URL: "${BASE_RPC_URL}",
+          AGENT_PRIVATE_KEY: "${AGENT_PRIVATE_KEY}",
+        },
+      },
+      "erc8004-registration": {
+        enabled: true,
+      },
+    },
+  },
+
+  // Channels: OpenClaw has no native X/Farcaster support.
+  // Social posting is handled by custom skills.
+  // Built-in channels below are for admin notifications only.
+  channels: {},
+}

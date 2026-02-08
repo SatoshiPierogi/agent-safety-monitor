@@ -1,0 +1,10 @@
+node_modules
+packages
+dist
+.env
+.git
+.claude
+docs
+*.md
+!workspace/*.md
+!config/*.json

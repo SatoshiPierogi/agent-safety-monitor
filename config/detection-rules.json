@@ -1,0 +1,82 @@
+{
+  "severity_levels": {
+    "CRITICAL": {
+      "description": "Immediate threat — drain patterns, exploit signatures",
+      "threshold_drains_per_hour": 3,
+      "auto_action": "slash",
+      "slash_bps": 5000,
+      "score_penalty": 300
+    },
+    "HIGH": {
+      "description": "Significant concern — high failure rate, suspicious patterns",
+      "threshold_failure_rate_24h": 0.30,
+      "auto_action": "score_update",
+      "slash_bps": 2000,
+      "score_penalty": 150
+    },
+    "MEDIUM": {
+      "description": "Moderate concern — elevated failure rate",
+      "threshold_failure_rate_24h": 0.20,
+      "auto_action": "score_update",
+      "slash_bps": 0,
+      "score_penalty": 75
+    },
+    "LOW": {
+      "description": "Minor concern — slightly elevated failure rate",
+      "threshold_failure_rate_24h": 0.10,
+      "auto_action": "log_only",
+      "slash_bps": 0,
+      "score_penalty": 25
+    }
+  },
+  "violation_types": {
+    "DRAIN_PATTERN": {
+      "description": "Multiple large outflows in short period",
+      "min_outflows": 3,
+      "window_hours": 1,
+      "severity": "CRITICAL"
+    },
+    "HIGH_FAILURE_RATE": {
+      "description": "Transaction failure rate exceeds threshold",
+      "window_hours": 24,
+      "severity_thresholds": {
+        "CRITICAL": 0.50,
+        "HIGH": 0.30,
+        "MEDIUM": 0.20,
+        "LOW": 0.10
+      }
+    },
+    "RAPID_TOKEN_DUMPS": {
+      "description": "Selling large amounts of promoted tokens quickly",
+      "window_hours": 6,
+      "min_sells": 5,
+      "severity": "HIGH"
+    },
+    "WASH_TRADING": {
+      "description": "Repeated back-and-forth transactions with same counterparty",
+      "window_hours": 24,
+      "min_round_trips": 10,
+      "severity": "MEDIUM"
+    },
+    "DORMANT_ACTIVATION": {
+      "description": "Sudden high activity after long dormancy",
+      "dormancy_days": 30,
+      "min_txs_in_hour": 10,
+      "severity": "MEDIUM"
+    }
+  },
+  "scoring_weights": {
+    "onchain": 0.40,
+    "aixbt": 0.30,
+    "nansen": 0.30
+  },
+  "degraded_mode": {
+    "both_apis_down": { "onchain_weight": 1.0, "confidence": 0.60 },
+    "aixbt_down": { "onchain_weight": 0.60, "nansen_weight": 0.40, "confidence": 0.80 },
+    "nansen_down": { "onchain_weight": 0.60, "aixbt_weight": 0.40, "confidence": 0.70 }
+  },
+  "cache_ttl": {
+    "aixbt_seconds": 3600,
+    "nansen_seconds": 21600
+  }
+}
