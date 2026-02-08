@@ -1,0 +1,1215 @@
+---
+## Frequently Asked Questions (FAQ)
+---
+
+# **What is Elfa?**
+
+1. **Who is Elfa built for?**
+
+Elfa is built for crypto-native traders who trade on information, not just charts.
+
+Specifically:
+
+* Semi-pro traders who rely on attention signals for ideas but want fast validation before acting
+* Experienced traders who understand risk but want to automate parts of their workflow and avoid missing key moments when they’re offline
+
+If you trade based on *what’s happening in the world*, Elfa is for you.
+
+2. **What is Elfa?**
+
+Elfa is a real-time crypto intelligence and trading platform that helps you **understand what’s happening and act with confidence**.
+
+Elfa tracks the *birth of attention* across crypto - where conversations start, which tokens are gaining momentum, why they’re moving, and who’s actually worth listening to - then turns that context into actionable insight and execution.
+
+In short: **Elfa helps you trade with greater intuition.**
+
+3. **What do people mainly use Elfa for?**
+
+Most users rely on Elfa for three core things:
+
+* **Spotting opportunities early**\
+  Discover tokens gaining real traction before they go mainstream by tracking organic attention as it forms.
+* **Building conviction quickly**\
+  Understand why a token is moving, assess sentiment, recent catalysts, and validate ideas without spending hours researching.
+* **Reducing missed opportunities**\
+  Stay informed and act even when you’re away from your desk - whether that’s through alerts, automation, or direct execution.
+
+4. **How is Elfa different from other crypto analytics tools?**
+
+Most tools focus on price, charts, or lagging indicators.
+
+Elfa focuses on **information** and **attention** - before price reacts.
+
+Key differences:
+
+* Tracks *real, organic attention*, not engineered hype
+* Updates in real time and supports every token in the universe - even newly launched ones
+* Designed for how modern traders actually operate: social-first, fast, intuitive
+
+7. **Where does Elfa get its data from?**
+
+Elfa processes data from multiple public sources that traders care about, including:
+
+* X (formerly Twitter)
+* Telegram
+* DEX and CEX market data
+* On-chain and off-chain trading signals
+* Other public trading-related data sources
+
+Elfa identifies the specific tokens being discussed, extracts key insights from related data sources, and structures them into **real-time intelligence**.
+
+5. **What does "Mindshare" represent?**
+
+<div data-full-width="true"><figure><img src="https://2425170316-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FFDOgANYuLEAo8mrWw0JV%2Fuploads%2FdFlP5dA4hDZ3xlPERJDa%2Fmindshare.png?alt=media&#x26;token=7532b46c-e100-44db-b007-5b9c9592bb19" alt="" width="563"><figcaption></figcaption></figure></div>
+
+Mindshare represents the **percentage of total crypto discussion** focused on a specific token within a given time window.
+
+Example: If ETH has 10% mindshare on the 1-hour leaderboard, it means 10% of all token mentions in the past hour were about ETH.
+
+<br>
+
+6. **Can people game the leaderboard by spamming mentions?**
+
+No.
+
+Elfa has anti-sybil and anti-spam mechanisms in place:
+
+* Repeated mentions from the same account contribute **exponentially less** over short periods
+* This prevents artificial inflation of mindshare through spam or coordinated posting
+
+7. **What does the Sentiment Score mean?**
+
+Sentiment Score reflects the **average sentiment** of all mentions for a token within a selected time period.
+
+It is calculated by:
+
+* Analyzing the bullishness or bearishness of each mention
+* Averaging sentiment across all mentions in that interval
+
+This provides directional context, not just volume.
+
+8. **What are Smart Accounts, CT Accounts and News Accounts?**
+
+**Smart Accounts:** Accounts that consistently demonstrate insight or deep thinking - such as builders, researchers, traders, and on-chain investigators.
+
+**CT Accounts:** Accounts active in Crypto Twitter that contribute to market conversation but may not consistently post deep analysis.
+
+**News Accounts:** Verified accounts tied to established crypto news outlets such as CoinDesk, CoinTelegraph, The Block, and others.
+
+You can filter your feed to display only certain accounts:
+
+<figure><img src="https://2425170316-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FFDOgANYuLEAo8mrWw0JV%2Fuploads%2FkFGoFg42tQorcJ9fH7zA%2FScreenshot%202025-07-18%20at%207.35.32%20PM.png?alt=media&#x26;token=796cae25-5c58-4d0e-85b4-319a8607e2ca" alt="" width="375"><figcaption></figcaption></figure>
+
+9. **Is Elfa a black box?**
+
+No.
+
+Transparency is a core design principle when we built this.
+
+* You can see *why* something is trending
+* You can trace insights back to real conversations
+* Signals are meant to be understood, not blindly followed
+
+Elfa is built to support judgment, not replace it.
+
+### Ask Elfa
+
+1. **What is Ask Elfa?**
+
+**Ask Elfa** is the core way most people experience Elfa.
+
+It’s an AI-powered chat that allows you to:
+
+* Ask questions about tokens, markets, and narratives - including what you should *do* next
+* Instantly understand *why* something is moving
+* Validate trade ideas without switching tabs or doing manual research
+
+Ask Elfa helps traders keep up with the market instantly and act confidently on information.&#x20;
+
+2. **How do I earn more Ask Elfa credits?**
+
+There are many ways to earn more Ask Elfa credits every month!
+
+* **Trade More:** The primary way to earn more credits, is simply to trade more. The more you trade, the higher your Tier. The higher your Tier, the more credits you are given every month. (see Tiers)
+* **Join our Trading Competition**: Elfa is running our first trading competition from 14th Jan to 10th Feb 2026. Users who sign up for the competition will enjoy Silver Tier benefits for 1 month, including 10,000 Ask Elfa credits for the month.
+* **Link Your Telegram Account to Elfa**: Link your telegram account to your Elfa account to unlock an extra 150 Ask Elfa credits every month.
+* **Early User Benefit**: f you signed up to Elfa before 5 Jan 2026, you will already enjoy an extra 100 Ask Elfa credits every month.
+
+### Trading on Elfa
+
+1. **Can I trade directly on Elfa?**
+
+Yes.&#x20;
+
+Elfa allows you to **go from understanding the market to executing a trade** without leaving the platform.
+
+If you already have the context, there’s no reason to switch apps just to act.
+
+Elfa's trading engine is built on Hyperliquid Builder Codes. If you have a Hyperliquid wallet already, just connect and start trading!
+
+2. **How do I use Elfa's "Suggest Trade Setup" feature?**
+
+* Start by using the **"Suggest Trade Setup"** in the Ask Elfa terminal or in the Ask Elfa tab on the trading terminal, and select the token you wish to trade when prompted.
+
+<figure><img src="https://2425170316-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FFDOgANYuLEAo8mrWw0JV%2Fuploads%2FlmQLmhfHXwALgxSYtIbl%2Fimage.png?alt=media&#x26;token=62a85bbe-3e66-42f4-baf1-0e9f239008b7" alt=""><figcaption><p>Suggest Trade Setup from the Ask Elfa terminal</p></figcaption></figure>
+
+<figure><img src="https://2425170316-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FFDOgANYuLEAo8mrWw0JV%2Fuploads%2FwIiLCbhD2Ix3TpO7vxZd%2Fimage.png?alt=media&#x26;token=ca3f0974-3375-485b-8d6c-f50a8bc98708" alt=""><figcaption><p>Suggest Trade Setup in the Ask Elfa tab on the trade terminal</p></figcaption></figure>
+
+* When Elfa finds a high-probability setup, you get the equivalent of a senior analyst team’s output.
+
+  * **Visual Breakdown:** See exactly where Elfa sees the move on the chart.
+  * **In-depth analysis:** Understand *why* the trade is being suggested based on data.
+  * **The "Trade" Button:** This is where you **feel the magic.** One click pre-fills the *limit price, take-profit, and stop-loss*. You maintain final control over your leverage and position size.
+
+  <figure><img src="https://2425170316-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FFDOgANYuLEAo8mrWw0JV%2Fuploads%2FqleFhVfpMGapyHiTHBbE%2Fimage.png?alt=media&#x26;token=96387f96-60d1-4ed2-b405-e8619e9b1b95" alt=""><figcaption><p>Ask Elfa's suggest trade autofills entry, take profit and stop loss levels when you hit Trade</p></figcaption></figure>
+* Input your desired trade size and hit Buy/Sell to execute your trade!
+
+3. **How safe is Elfa's embedded wallet?**
+
+When you use Elfa to trade, an agent wallet is generated for you which is authorized to sign trading transactions **on behalf of your actual main wallet**. This is similar to how Hyperliquid manages trades and orders on HyperCore.
+
+Although we can execute your take-profit and stop-loss orders via the agent wallet, we cannot move your funds or make trades for you.
+
+4. **I'm facing an odd bug in the app when trying to trade. What can I do to fix it?**
+
+Some things you can try if you are facing an unknown bug on the app:
+
+1. Check in with us on Telegram at the [Elfa Roast Club](https://t.me/+eLScm_69fAtkYTVl) - our devs will help you resolve the issue ASAP!
+
+2. Log out and log back into the app
+
+3. Clear the cache on your device
+
+4. **How do I clear my cache?**
+
+**Desktop**
+
+You can use the shortcut `Ctrl` + `Shift` + `Delete` on Windows or `Cmd` + `Shift` + `Delete` on Mac to clear your cache.
+
+**Safari (iOS)**
+
+1. Open Settings > Apps > Safari.
+2. Scroll to the very bottom and tap Advanced.
+3. Tap Website Data.
+4. Tap Remove All Website Data (do note that this also clears cookies).
+
+**Chrome (iOS)**
+
+1. Open the Chrome app and tap the three dots (...) at the bottom.
+2. Tap Settings > Privacy and Security.
+3. Tap Delete Browsing Data.
+4. Check ONLY "Cached Images and Files."
+5. Tap Delete Browsing Data at the bottom.
+
+**Chrome (Android)**
+
+1. Open Chrome and tap the three dots (⋮) in the top right.
+
+2. Tap Settings > Privacy and security
+
+3. Tap Delete browsing data.
+
+4. Select the Time range (e.g., "All time").
+
+5. Uncheck "Browsing history" and "Cookies and site data."
+
+6. Check ONLY "Cached images and files."
+
+7. Tap Delete data.
+
+8. **What fees does Elfa charge on trading?**
+
+Elfa's trading runs on Hyperliquid, so on the base level, Hyperliquid charges a [fee based on your 14D weighted volume](https://hyperliquid.gitbook.io/hyperliquid-docs/trading/fees).
+
+On top of that, Elfa charges a fee of 0.05% on each trade.
+
+Trading Fees can be reduced based on your account's Tier (see Tiers).
+
+### Trading Tiers
+
+1. **What are Tiers?**
+
+Elfa's tier system is designed to reward active traders with lower fees and exclusive recurring perks. Your tier is determined by your total trading volume over a rolling 30-day period.&#x20;
+
+<table><thead><tr><th width="106">Tier</th><th width="162">30D Volume</th><th width="129">Fee</th><th width="212">Ask Elfa Credits/Month</th><th>Fee Rebates*</th></tr></thead><tbody><tr><td>Default</td><td>N/A</td><td>0.05%</td><td>150</td><td>N/A</td></tr><tr><td>Member</td><td>>$5K</td><td>0.05%</td><td>500</td><td>N/A</td></tr><tr><td>Bronze</td><td>>$250K</td><td>0.05%</td><td>2,000</td><td>N/A</td></tr><tr><td>Silver</td><td>>$2.5M</td><td>0.025%</td><td>10,000</td><td>N/A</td></tr><tr><td>Gold</td><td>>$10M</td><td>0.025%</td><td>10,000</td><td>20%</td></tr><tr><td>Master</td><td>>$25M</td><td>0.025%</td><td>10,000</td><td>30%</td></tr><tr><td>Legend</td><td>>$100M</td><td>0.025%</td><td>Unlimited</td><td>40%</td></tr></tbody></table>
+
+*\*Fee Rebates are claimable cash rebates from trading. For example, for a Gold Tier user who traded $10M in volume, they would be eligible to claim $500 in rebates (20% \* 10,000,000 \* 0.025%).*
+
+2. **How do I link my Telegram Account to Elfa?**
+
+* Click on the **4 squares icon** on the top right corner
+
+<figure><img src="https://2425170316-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FFDOgANYuLEAo8mrWw0JV%2Fuploads%2FCdikCb0SrsQNe8RzmmMX%2Fimage.png?alt=media&#x26;token=cc25282b-2af9-4fa6-b740-488b4f3b5b56" alt=""><figcaption></figcaption></figure>
+
+* Click on **Settings**
+
+<figure><img src="https://2425170316-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FFDOgANYuLEAo8mrWw0JV%2Fuploads%2FW0X8UR1HEqIswNIaS3nd%2Fimage.png?alt=media&#x26;token=4661b667-51c2-4149-9ecb-832dd78d23a5" alt=""><figcaption></figcaption></figure>
+
+* Select **Connect to Telegram**
+
+<figure><img src="https://2425170316-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FFDOgANYuLEAo8mrWw0JV%2Fuploads%2FNyfn5XogZH4Ht01J16Q6%2Fimage.png?alt=media&#x26;token=5715720c-29d2-40dc-91f1-4648a23e563b" alt=""><figcaption></figcaption></figure>
+
+### Referrals
+
+1. **How do I let my friends try Elfa?**
+
+Every beta user receives **20 invite codes**.
+
+You can find your unique invite link or code by clicking the **“Invite”** button in the top-right corner of the Elfa app.
+
+<div data-full-width="true"><figure><img src="https://2425170316-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FFDOgANYuLEAo8mrWw0JV%2Fuploads%2FceNOxsFwQN7psUQMhCKJ%2Fimage.png?alt=media&#x26;token=b4c5beff-78e2-485b-8afb-136caa951a6a" alt="" width="563"><figcaption></figcaption></figure></div>
+
+### Token
+
+1. **Does Elfa have a token?**
+
+No.
+
+\
+\
+\ <br>
+
+---
+## Elfa API Documentation
+---
+
+Overview
+Elfa provides a powerful REST API for historical data, with WebSocket API coming soon for real-time streams. The documentation includes detailed references, code samples, and interactive "Try it" functionality.
+REST API — Provides endpoints for querying historical data, including mentions with smart engagement, trending tokens, account statistics, and more.
+WebSocket API — Will provide real-time data streaming for mentions of tracked keywords, fuzzy matching of phrases, and system notifications. (Coming Soon)
+
+Getting Started with Elfa APIs
+Welcome to the Elfa API documentation! This guide will help you get started with our REST API.
+Authentication
+All Elfa APIs require authentication using an API key. You can obtain an API key by contacting our support team or through your account dashboard.
+
+REST API Authentication
+For REST API calls, include your API key in the request header:
+x-elfa-api-key: your_api_key_here
+API Overview
+REST API
+Our REST API provides endpoints for querying historical data, including:
+
+Mentions with smart engagement
+Top mentions for specific tokens
+Trending tokens
+Account statistics
+Keyword searches
+
+Rate Limits
+REST API has rate limits to ensure fair usage:
+
+REST API: 100 requests per minute per API key
+
+Example Applications
+JavaScript/TypeScript Example
+Here's a basic example of using the REST API in a Node.js application:
+javascriptimport axios from "axios";
+
+// API key
+const API_KEY = "your_api_key_here";
+
+// REST API example - get trending tokens
+async function getTrendingTokens() {
+  try {
+    const response = await axios.get(
+      "https://api.elfa.ai/v2/aggregations/trending-tokens",
+      {
+        headers: {
+          "x-elfa-api-key": API_KEY,
+        },
+        params: {
+          timeWindow: "24h",
+        },
+      }
+    );
+    console.log("Trending tokens:", response.data);
+  } catch (error) {
+    console.error("Error fetching trending tokens:", error);
+  }
+}
+
+// Run example
+getTrendingTokens();
+```
+
+## Next Steps
+
+- Explore the REST API documentation for detailed endpoint information
+- Read more about Rate Limits and Authentication for more detailed information
+
+---
+
+# Authentication
+
+All Elfa APIs require authentication using an API key. This document explains how to authenticate with our REST API.
+
+## Obtaining an API Key
+
+You can obtain an API key by:
+
+1. Registering on the Elfa platform
+2. Navigating to your account settings
+3. Creating a new API key from the developer section
+
+> **Caution:** Keep your API key secure! Do not share it publicly or commit it to version control systems.
+
+## API Key Permissions
+
+API keys can have different permission levels:
+
+- **Read-only:** Can only access GET endpoints
+- **Standard:** Can access all standard API endpoints
+- **Premium:** Can access all endpoints, including those with higher rate limits
+
+## Authenticating with the REST API
+
+For all REST API calls, include your API key in the request header:
+```
+x-elfa-api-key: your_api_key_here
+Example API Request with Authentication
+cURL
+bashcurl -X GET "https://api.elfa.ai/v2/aggregations/trending-tokens" \\
+  -H "x-elfa-api-key: your_api_key_here"
+JavaScript (Fetch)
+javascript// Example API call
+const fetchTrendingTokens = async () => {
+  const response = await fetch(
+    "https://api.elfa.ai/v2/aggregations/trending-tokens",
+    {
+      headers: {
+        "x-elfa-api-key": "your_api_key_here",
+      },
+    }
+  );
+  return await response.json();
+};
+Python (Requests)
+python# Example Python API call
+import requests
+
+headers = {
+    "x-elfa-api-key": "your_api_key_here"
+}
+
+response = requests.get(
+    "https://api.elfa.ai/v2/aggregations/trending-tokens",
+    headers=headers
+)
+data = response.json()
+API Key Management
+Checking API Key Status
+You can check the status and usage of your API key using the /v2/key-status endpoint:
+bashcurl -X GET "https://api.elfa.ai/v2/key-status" \\
+  -H "x-elfa-api-key: your_api_key_here"
+The response will include:
+
+Current usage statistics
+Rate limits
+Permissions
+Expiration date (if applicable)
+
+Revoking an API Key
+If your API key is compromised, you should revoke it immediately through the Elfa platform:
+
+Log in to your account
+Go to the developer section
+Find the compromised key and click "Revoke"
+Create a new key to replace it
+
+Troubleshooting
+If you encounter authentication issues:
+
+401 Unauthorized: Check that your API key is correct and hasn't expired
+403 Forbidden: Your API key doesn't have permission for the requested resource
+429 Too Many Requests: You've exceeded your rate limit
+
+
+Rate Limits and Usage Tiers
+Elfa API provides different tiers of service with varying call credits and feature availability. This document outlines usage constraints and features available in each tier.
+Understanding Call Credits
+Elfa API uses monthly call credits to ensure fair usage across all users. Each tier includes a specific number of API calls you can make per month. If you exceed your monthly call credits, additional requests will be rejected until your credits reset at the beginning of the next month.
+Available Tiers
+New pricing structure effective July 24, 2025
+FreeChillGrowTurbochargedEnterpriseMonthly Price$0$40$290$2,600Contact UsAnnual Price$0$432 (10% off)$2,958 (15% off)$24,960 (20% off)Contact UsMonthly Credits1,0005,00040,000500,000CustomRate Limit60 RPM60 RPM120 RPM120 RPMCustom limitsKey FeaturesTrending tokens, Smart stats, Top mentions, Multi-keyword mentions search, Event summary from keyword mentions, Token news mentions, Trending contract addresses on Twitter, Trending contract addresses on TelegramAll Free featuresAll Chill features, Token mindshare, Sentiment-weighted mentions, Trending narrativesAll Grow featuresCustom data
+Legacy Tiers (Discontinuing July 24, 2025)
+The following tiers will be discontinued on July 24, 2025. Existing users will be migrated to the new pricing structure.
+Legacy ChillLegacy GrowthMonthly Credits10,000100,000Rate Limit60 RPM120 RPMPriceFree$290Key FeaturesSmart Follower Count, Smart Engagement Posts, Top Ticker MentionsAll Chill features, Search Trending Keywords, Query Most Discussed Tokens, Priority support
+Best Practices
+To make the most efficient use of your call credits:
+
+Cache responses when possible to avoid repeated calls for the same data.
+Implement exponential backoff when receiving errors due to limits.
+Monitor your usage to avoid unexpectedly hitting limits.
+Batch requests where the API allows, rather than making many small requests.
+
+Upgrading Your Tier
+If you find yourself consistently reaching your rate limits, consider upgrading to a higher tier. You can upgrade at any time, and your new limits will take effect immediately.
+For questions about custom rate limits or enterprise plans, please contact our support team.
+
+API V1 to V2 Migration Guide
+Overview
+This guide helps you migrate from our V1 API endpoints to the new V2 API. The V2 API provides enhanced data privacy compliance, improved performance, and consistent data formatting while maintaining similar functionality.
+Migration Options
+We provide two migration paths to help you transition from V1 to V2:
+
+Option 1: SDK Migration (Recommended) — Easiest and fastest migration path. Use our official SDKs for a drop-in replacement experience.
+Option 2: Raw API Migration — Manual migration. Directly update your API calls to use V2 endpoints.
+
+SDK Migration (Recommended)
+Why Choose the SDK?
+BenefitSDKRaw APIMigration Effort✅ Minimal - Drop-in replacement❌ Manual endpoint updates requiredV1 Compatibility✅ V1 compatibility layer included❌ Breaking changesRaw Tweet Content✅ Optional access with Twitter API key❌ Not availableType Safety✅ Full TypeScript support❌ Manual type definitionsError Handling✅ Smart error handling & retries❌ Manual error handlingRate Limiting✅ Built-in rate limit management❌ Manual rate limit handling
+TypeScript/JavaScript SDK
+Installation
+bashnpm install @elfa-ai/sdk
+Quick Migration Example
+javascript// Before (V1 Raw API)
+const response = await fetch('/v1/trending-tokens?timeWindow=24h&page=1&pageSize=50');
+const data = await response.json();
+
+// After (SDK - Drop-in replacement)
+import { ElfaSDK } from '@elfa-ai/sdk';
+
+const elfa = new ElfaSDK({
+  elfaApiKey: 'your-elfa-api-key',
+  twitterApiKey: 'optional-twitter-bearer-token' // For raw tweet content
+});
+
+const data = await elfa.getTrendingTokens({ timeWindow: '24h', pageSize: 50 });
+V1 Compatibility Layer
+For the smoothest migration, use our V1 compatibility layer:
+javascriptimport { V1CompatibilityLayer } from '@elfa-ai/sdk/compatibility';
+
+// Drop-in replacement for your existing V1 code
+const client = new V1CompatibilityLayer({
+  elfaApiKey: 'your-elfa-api-key',
+  enableV1Behavior: true
+});
+
+// Your existing V1 method calls work unchanged
+const trending = await client.getTrendingTokens({ timeWindow: '24h' });
+const mentions = await client.searchMentions({ keywords: 'bitcoin' });
+Complete V1 SDK Method Mapping
+V1 EndpointSDK MethodV2 MappingStatus/v1/pingping()/v2/ping✅ Ready/v1/key-statusgetKeyStatus()/v2/key-status✅ Ready/v1/mentionsgetMentionsWithSmartEngagement()/v1/mentions⚠️ Legacy (will be deprecated)/v1/top-mentionsgetTopMentions()/v2/data/top-mentions✅ Ready/v1/mentions/searchgetMentionsByKeywords()/v2/data/keyword-mentions✅ Ready/v1/trending-tokensgetTrendingTokens()/v2/aggregations/trending-tokens✅ Ready/v1/account/smart-statsgetAccountSmartStats()/v2/account/smart-stats✅ Ready
+Key SDK Usage Examples
+Get Trending Tokens
+javascriptconst trending = await client.getTrendingTokens({
+  timeWindow: '24h',
+  pageSize: 50,
+  minMentions: 5
+});
+Search Keyword Mentions
+javascriptconst mentions = await client.getMentionsByKeywords({
+  keywords: 'bitcoin,ethereum',
+  from: 1640995200,
+  to: 1641081600,
+  fetchRawTweets: true // Requires Twitter API key
+});
+Get Top Mentions
+javascriptconst topMentions = await client.getTopMentions({
+  ticker: 'bitcoin',
+  timeWindow: '1h',
+  pageSize: 10
+});
+Get Account Smart Stats
+javascriptconst stats = await client.getAccountSmartStats({
+  username: 'elonmusk'
+});
+Python SDK (Coming Soon)
+python# Coming soon
+from elfa_sdk import ElfaSDK
+
+elfa = ElfaSDK(
+    elfa_api_key="your-elfa-api-key",
+    twitter_api_key="optional-twitter-bearer-token"
+)
+
+trending = await elfa.get_trending_tokens(time_window="24h", page_size=50)
+```
+
+## Raw API Migration
+
+If you prefer to migrate manually or need direct API control, follow this detailed guide:
+
+### Base URL Changes
+
+- V1: `/v1/...`
+- V2: `/v2/...`
+
+### Key Differences
+
+#### 1. Data Privacy & Compliance
+
+V2 removes raw tweet content to comply with platform ToS. Returns sanitized metadata (engagement metrics, timestamps, account info). No direct tweet text or content exposure.
+
+#### 2. Response Format
+
+- V1: Varied response structures
+- V2: Consistent `{ success: boolean, data: any, metadata?: any }` format
+
+#### 3. Pagination Patterns
+
+- Search endpoints: Use `limit` + `cursor` for efficient pagination
+- Aggregation endpoints: Use `page` + `pageSize` for bounded result sets
+
+### Endpoint Migration Map
+
+| V1 Endpoint | V2 Equivalent | Status | Changes |
+|---|---|---|---|
+| GET /v1/trending-tokens | GET /v2/aggregations/trending-tokens | ✅ Direct migration | Same parameters, enhanced response |
+| GET /v1/mentions/search | GET /v2/data/keyword-mentions | ⚠️ Breaking changes | New parameters, sanitized data |
+| GET /v1/token-mentions | GET /v2/data/token-news | ⚠️ Breaking changes | Different pagination, sanitized data |
+| GET /v1/account/smart-stats | GET /v2/account/smart-stats | ✅ Direct migration | Same functionality |
+| GET /v1/top-mentions | GET /v2/data/top-mentions | ✅ Direct migration | Same functionality, sanitized data |
+| GET /v1/mentions | ❌ No V2 equivalent | Deprecated | Use keyword-mentions instead |
+
+### Detailed Migration Instructions
+
+#### 1. Trending Tokens
+
+✅ EASY MIGRATION - Same parameters
+
+**V1 Request:**
+```
+GET /v1/trending-tokens?timeWindow=24h&page=1&pageSize=50&minMentions=5
+```
+
+**V2 Request:**
+```
+GET /v2/aggregations/trending-tokens?timeWindow=24h&page=1&pageSize=50&minMentions=5
+```
+
+**Changes:**
+- ✅ Same parameters: timeWindow, page, pageSize, minMentions
+- ✅ Same functionality: Returns trending tokens by mention count
+- 🔄 Enhanced response: Consistent V2 format with metadata
+
+#### 2. Keyword/Mentions Search
+
+⚠️ BREAKING CHANGES - Updated parameters and data format
+
+**V1 Request:**
+```
+GET /v1/mentions/search?keywords=bitcoin,ethereum&from=1640995200&to=1641081600&limit=20&searchType=or&cursor=abc123
+```
+
+**V2 Request:**
+```
+GET /v2/data/keyword-mentions?keywords=bitcoin,ethereum&from=1640995200&to=1641081600&limit=20&searchType=or&cursor=abc123
+```
+
+**Key Changes:**
+- ✅ Same parameters: keywords, from, to, limit, searchType, cursor
+- ❌ Removed: Raw tweet content/text
+- ✅ Added: accountName parameter for filtering by specific accounts
+- 🔄 Sanitized data: Only metadata (engagement metrics, timestamps, account info)
+
+**New Features:**
+- Account filtering: Add `accountName=elonmusk` to filter mentions by specific accounts
+- Either/or search: Provide either keywords OR accountName (or both)
+
+#### 3. Token News/Mentions
+
+⚠️ BREAKING CHANGES - New pagination pattern
+
+**V1 Request:**
+```
+GET /v1/token-mentions?from=1640995200&to=1641081600&page=1&coinIds=bitcoin,ethereum&isNews=true
+```
+
+**V2 Request:**
+```
+GET /v2/data/token-news?from=1640995200&to=1641081600&page=1&pageSize=20&coinIds=bitcoin,ethereum
+```
+
+**Key Changes:**
+- ✅ Same core params: from, to, coinIds
+- 🔄 Pagination change: Added explicit pageSize parameter (default: 20)
+- ❌ Removed: isNews parameter (V2 only returns news mentions)
+- ❌ Removed: Raw tweet content
+- 🔄 Different response: Sanitized news mention data only
+
+#### 4. Top Mentions by Ticker
+
+✅ AVAILABLE IN V2 - New endpoint with same functionality
+
+**V1 Request:**
+```
+GET /v1/top-mentions?ticker=bitcoin&timeWindow=1h&page=1&pageSize=10&includeAccountDetails=false
+```
+
+**V2 Request:**
+```
+GET /v2/data/top-mentions?ticker=bitcoin&timeWindow=1h&page=1&pageSize=10
+```
+
+**Key Changes:**
+- ✅ Same core parameters: ticker, timeWindow, page, pageSize
+- ❌ Removed: includeAccountDetails parameter (account info always included)
+- ❌ Removed: Raw tweet content
+- ✅ Same ranking: Still sorts by view_count → mentioned_at → relevance
+- 🔄 Sanitized data: Only metadata (engagement metrics, timestamps, account info)
+
+**Features Preserved:**
+- Smart ticker matching: $TICKER for exact cashtag matches, TICKER for broader search
+- Engagement-based ranking: High-performing tweets ranked first
+- Time window filtering: Support for 1h, 24h, 7d, etc.
+- Account information: Username, verification status, account tags
+
+#### 5. Account Smart Stats
+
+✅ DIRECT MIGRATION - No changes needed
+
+**V1 & V2 Request (identical):**
+```
+GET /v1/account/smart-stats?username=elonmusk
+GET /v2/account/smart-stats?username=elonmusk
+Changes:
+
+✅ No parameter changes
+✅ Same functionality
+🔄 Consistent V2 response format
+
+6. Contract Addresses (NEW in V2)
+🆕 V2 EXCLUSIVE FEATURES
+bash# Twitter contract addresses
+GET /v2/aggregations/trending-cas/twitter?timeWindow=24h&page=1&pageSize=50&minMentions=5
+
+# Telegram contract addresses
+GET /v2/aggregations/trending-cas/telegram?timeWindow=24h&page=1&pageSize=50&minMentions=5
+Response Format Changes
+V1 Response Example:
+json{
+  "success": true,
+  "data": [
+    {
+      "id": "123",
+      "content": "Just bought some $BTC! 🚀",
+      "mentioned_at": "2024-01-01T00:00:00Z",
+      "account_name": "cryptotrader",
+      "like_count": 42
+    }
+  ],
+  "metadata": {
+    "total": 100
+  }
+}
+V2 Response Example:
+json{
+  "success": true,
+  "data": [
+    {
+      "source_ref_id": "123",
+      "mentioned_at": "2024-01-01T00:00:00Z",
+      "account_name": "cryptotrader",
+      "like_count": 42,
+      "repost_count": 5,
+      "view_count": 1000,
+      "account_tags": ["smart"]
+    }
+  ],
+  "metadata": {
+    "total": 100,
+    "page": 1,
+    "pageSize": 20
+  }
+}
+Pagination Pattern Guide
+Pattern 1: Search Endpoints → limit + cursor
+
+Use for: keyword-mentions
+Best for: Large result sets, real-time data
+Parameters: limit=20&cursor=abc123
+
+Pattern 2: Aggregation Endpoints → page + pageSize
+
+Use for: trending-tokens, trending-cas, token-news
+Best for: Bounded analytics data
+Parameters: page=1&pageSize=50
+
+Cursor vs Page Pagination
+When to use Cursor (limit + cursor):
+bash# Good for: Large datasets, real-time feeds
+GET /v2/data/keyword-mentions?keywords=bitcoin&limit=20&cursor=eyJ0aW1lc3RhbXAiOjE2NDA5OTUyMDB9
+
+# Next page:
+GET /v2/data/keyword-mentions?keywords=bitcoin&limit=20&cursor=<cursor_from_previous_response>
+When to use Page (page + pageSize):
+bash# Good for: Small bounded datasets, analytics
+GET /v2/aggregations/trending-tokens?timeWindow=24h&page=1&pageSize=50
+
+# Next page:
+GET /v2/aggregations/trending-tokens?timeWindow=24h&page=2&pageSize=50
+Migration Checklist
+Before Migration:
+
+ Review your current V1 usage patterns
+ Identify which endpoints you're using
+ Update API base URLs from /v1/ to /v2/
+ Review new response formats (no raw content)
+
+During Migration:
+For trending-tokens:
+
+ Change URL path to /v2/aggregations/trending-tokens
+ Update response parsing (new format)
+
+For keyword search:
+
+ Change URL path to /v2/data/keyword-mentions
+ Update response parsing (no raw content)
+ Consider using new accountName parameter
+
+For token mentions/news:
+
+ Change URL path to /v2/data/token-news
+ Add explicit pageSize parameter
+ Remove isNews parameter (always news in V2)
+ Update response parsing (sanitized data)
+
+For top mentions:
+
+ Change URL path to /v2/data/top-mentions
+ Remove includeAccountDetails parameter (always included)
+ Update response parsing (sanitized data)
+
+For account stats:
+
+ Change URL path to /v2/account/smart-stats
+ Update response parsing (new format)
+
+After Migration:
+
+ Test all endpoints with your integration
+ Verify pagination works correctly
+ Update error handling for new response format
+ Monitor API performance and adjust pagination sizes
+
+Code Examples
+JavaScript/TypeScript Migration
+Before (V1):
+javascript// V1 trending tokens
+const response = await fetch('/v1/trending-tokens?timeWindow=24h&page=1&pageSize=50');
+const data = await response.json();
+console.log(data.data); // Direct array access
+
+// V1 top mentions with raw content
+const topMentions = await fetch('/v1/top-mentions?ticker=bitcoin&timeWindow=1h');
+const topData = await topMentions.json();
+console.log(topData.data.data[0].content); // Raw tweet content
+
+// V1 keyword search with raw content
+const searchResponse = await fetch('/v1/mentions/search?keywords=bitcoin&from=1640995200&to=1641081600');
+const searchData = await searchResponse.json();
+console.log(searchData.data[0].content); // Raw tweet content
+After (V2):
+javascript// V2 trending tokens
+const response = await fetch('/v2/aggregations/trending-tokens?timeWindow=24h&page=1&pageSize=50');
+const data = await response.json();
+console.log(data.data); // Same array access
+console.log(data.metadata); // Enhanced metadata
+
+// V2 top mentions (sanitized data only)
+const topMentions = await fetch('/v2/data/top-mentions?ticker=bitcoin&timeWindow=1h');
+const topData = await topMentions.json();
+console.log(topData.data[0].source_ref_id); // Reference ID instead of content
+console.log(topData.data[0].view_count); // Engagement metrics preserved
+// topData.data[0].content is undefined (removed for compliance)
+
+// V2 keyword search (sanitized data only)
+const searchResponse = await fetch('/v2/data/keyword-mentions?keywords=bitcoin&from=1640995200&to=1641081600');
+const searchData = await searchResponse.json();
+console.log(searchData.data[0].source_ref_id); // Reference ID instead of content
+console.log(searchData.data[0].like_count); // Engagement metrics available
+// searchData.data[0].content is undefined (removed for compliance)
+```
+
+### API Limits & Defaults
+
+| Parameter | V1 Default | V2 Default | Max Value |
+|---|---|---|---|
+| pageSize | 20-50 | 20 (data), 50 (aggregations) | 100 |
+| limit | 20 | 20 | 30 |
+| page | 1 | 1 | No limit |
+| timeWindow | "24h" | "24h" | - |
+
+### Troubleshooting
+
+**Common Migration Issues:**
+
+1. **"Raw content is undefined"** — Cause: V2 removes raw tweet content for compliance. Solution: Use engagement metrics and metadata instead of content.
+2. **"Pagination not working"** — Cause: Mixed pagination patterns. Solution: Use limit+cursor for search, page+pageSize for aggregations.
+3. **"Different response structure"** — Cause: V2 uses consistent {success, data, metadata} format. Solution: Update response parsing to use response.data instead of direct access.
+4. **"Missing endpoints"** — Cause: Some V1 endpoints deprecated in V2. Solution: Use keyword-mentions as replacement for deprecated search endpoints.
+
+### Support
+
+For migration support or questions:
+- Review the V2 API documentation
+- Check response format examples
+- Test endpoints in development first
+- Contact support if you encounter breaking changes not covered in this guide
+
+### Timeline
+
+- **V1 API:** Remains available during migration period
+- **V2 API:** Available now for migration
+- **Migration deadline:** TBD (will be announced with sufficient notice)
+- **V1 deprecation:** TBD (only after successful V2 adoption)
+
+---
+
+# Changelog
+
+All notable changes to the Elfa API will be documented in this page. The format is based on Keep a Changelog, and this project adheres to Semantic Versioning.
+
+## [2.3.1]
+
+### Added
+- **timeWindow parameter:** Added optional timeWindow parameter to getTokenNews() method for time-based filtering
+- **Default timeWindow values:** API now provides default "7d" values for time window parameters across multiple endpoints
+
+### Changed
+- **Token news interface:** Enhanced TokenNewsParams interface to support time window filtering
+- **API parameter defaults:** Updated swagger schema with default time window values for improved usability
+
+## [2.3.0]
+
+### Added
+- **Event summary endpoint:** New endpoint for event-based data aggregation
+- **Reposts parameter:** Added support for repost filtering in V2 client methods
+- **Repost breakdown field:** Enhanced response data with repost analytics
+
+### Changed
+- **Mention schema update:** Replaced SanitizedMention with MentionV2 for improved clarity and consistency
+- **Test coverage:** Expanded test coverage for reposts parameter functionality
+
+### Fixed
+- **Schema updates:** Updated Swagger documentation to reflect latest API changes
+
+## [2.2.0]
+
+### Added
+- **Smart follower count:** New field in smart account statistics
+- **Enhanced linting:** Implemented comprehensive ESLint configuration with pre-commit hooks
+- **Code formatting:** Added Prettier integration with lint-staged for consistent code style
+
+### Changed
+- **Smart stats response structure:** Updated response format with additional fields for better analytics
+- **Development workflow:** Added pre-commit hooks for code quality enforcement
+
+### Fixed
+- **TrendingContractAddress interface:** Removed deprecated changePercent field
+- **Top mentions schema:** Fixed return schema validation issues
+
+## [2.1.0]
+
+### Added
+- **Smart follower count:** Enhanced account statistics with follower tracking
+- **Production schema:** Updated to use production Swagger schema
+
+### Fixed
+- **Top mentions schema:** Hotfix for schema validation issues
+- **HTTP client tests:** Fixed test reliability issues
+
+## [2.0.2]
+
+### Fixed
+- **SDK version:** Version alignment fixes
+- **Build process:** Improved build reliability
+
+## [2.0.1]
+
+### Fixed
+- **Mapping fixes:** Corrected data mapping issues
+- **CI updates:** Enhanced continuous integration pipeline
+
+## [2.0.0] - API V2 Release
+
+### Added
+- New V2 API endpoints with enhanced data privacy compliance
+- Contract address trending endpoints: `/v2/aggregations/trending-cas/twitter` and `/v2/aggregations/trending-cas/telegram`
+- Account filtering: New accountName parameter for keyword mentions search
+- Consistent response format: All V2 endpoints return `{success, data, metadata}` structure
+- Enhanced pagination: Cursor-based pagination for search endpoints, page-based for aggregations
+- Improved metadata: Enhanced response metadata with pagination info
+- TypeScript SDK: Official TypeScript SDK for Elfa API v2
+- Dual client architecture: ElfaV2Client with optional TwitterClient enhancement
+- V1 compatibility layer: Drop-in replacement for legacy code migration
+- Response enhancement system: Enriches V2 data with Twitter content when available
+
+### Changed
+- Endpoint paths: All V2 endpoints use `/v2/` prefix
+- Response format: Standardized response structure across all endpoints
+- Pagination patterns: Different patterns for search vs aggregation endpoints
+- Token news endpoint: Now uses page + pageSize instead of just page
+- Top mentions: Account details always included (removed includeAccountDetails parameter)
+
+### Deprecated
+- V1 API endpoints: All V1 endpoints are deprecated in favor of V2 equivalents
+- V1 mentions search: Use `/v2/data/keyword-mentions` instead of `/v1/mentions/search`
+
+### Removed
+- Raw tweet content: Removed from all V2 endpoints for platform ToS compliance
+- Tweet text/content fields: No longer available in any V2 responses
+- isNews parameter: Removed from token news endpoint (V2 only returns news)
+- includeAccountDetails parameter: Removed from top mentions (always included)
+
+### Security
+- Enhanced data privacy: Raw social media content removed to comply with platform Terms of Service
+- Sanitized responses: Only metadata and engagement metrics provided
+
+## [1.0.0] - Initial Release
+
+### Added
+- Initial API documentation structure
+- REST API reference documentation
+- Authentication and rate limiting documentation
+- V1 API endpoints for trending tokens, mentions search, and account stats
+
+---
+
+# REST API Reference
+
+**Version:** 2.0.0
+
+API documentation for Elfa.
+
+## Authentication
+
+- **Security Scheme Type:** apiKey
+- **Header parameter name:** `x-elfa-api-key`
+
+---
+
+## Health Check Endpoint
+```
+GET https://api.elfa.ai/v2/ping
+Simple health check to verify API availability.
+Responses
+200 OK
+json{
+  "success": true,
+  "data": {
+    "message": "string"
+  }
+}
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| success | boolean | Yes | Possible values: [true] |
+| data.message | string | Yes | |
+
+---
+
+## API Key Status
+```
+GET https://api.elfa.ai/v2/key-status
+Retrieve the current status and usage of your API key.
+Responses
+200 OK
+json{
+  "success": true,
+  "data": {
+    "id": 0,
+    "key": "string",
+    "name": "string",
+    "status": "active",
+    "dailyRequestLimit": 0,
+    "monthlyRequestLimit": 0,
+    "expiresAt": "string",
+    "createdAt": "string",
+    "updatedAt": "string",
+    "requestsPerMinute": 0,
+    "email": "string",
+    "project": "string",
+    "allowOverage": true,
+    "maxOverage": 0,
+    "tier": "string",
+    "usage": {
+      "monthly": 0,
+      "daily": 0
+    },
+    "limits": {
+      "monthly": 0,
+      "daily": 0
+    },
+    "isExpired": true,
+    "remainingRequests": {
+      "monthly": 0,
+      "daily": 0
+    }
+  }
+}
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| id | double | Yes | |
+| key | string | Yes | |
+| name | string | Yes | |
+| status | string | Yes | Possible values: [active, revoked, expired, payment_required] |
+| dailyRequestLimit | double | Yes | |
+| monthlyRequestLimit | double | Yes | |
+| expiresAt | string | Yes | |
+| createdAt | string | Yes | |
+| updatedAt | string | Yes | |
+| requestsPerMinute | double (nullable) | Yes | |
+| email | string (nullable) | Yes | |
+| project | string (nullable) | Yes | |
+| allowOverage | boolean (nullable) | Yes | |
+| maxOverage | double (nullable) | Yes | |
+| tier | string | Yes | |
+| usage.monthly | double | Yes | |
+| usage.daily | double | Yes | |
+| limits.monthly | double | Yes | |
+| limits.daily | double | Yes | |
+| isExpired | boolean | Yes | |
+| remainingRequests.monthly | double | Yes | |
+| remainingRequests.daily | double | Yes | |
+
+**401 Unauthorized**
+
+---
+
+## Trending Tokens
+```
+GET https://api.elfa.ai/v2/aggregations/trending-tokens
+
+This experimental endpoint is under active development and its behavior may change without notice. Use with caution in production environments.
+
+Retrieve trending tokens based on highest mentions count, filtered by a minimum mention threshold over a specified time period.
+Note: You must provide EITHER timeWindow OR both from and to parameters. If both timeWindow and from/to are provided, from/to takes priority.
+Query Parameters
+ParameterTypeRequiredDefaultDescriptiontimeWindowstringNo7dTime window for trending analysis (e.g., "30m", "1h", "4h", "24h", "7d", "30d")fromdoubleNoStart date (unix timestamp)todoubleNoEnd date (unix timestamp)pagedoubleNo1Page number for paginationpageSizedoubleNo50Number of items per pageminMentionsdoubleNo5Minimum number of mentions required
+Responses
+200 OK
+json{
+  "success": true,
+  "data": {
+    "pageSize": 0,
+    "page": 0,
+    "total": 0,
+    "data": [
+      {
+        "change_percent": 0,
+        "previous_count": 0,
+        "current_count": 0,
+        "token": "string"
+      }
+    ]
+  }
+}
+```
+
+**401 Unauthorized**
+
+---
+
+## Smart Stats of Accounts
+```
+GET https://api.elfa.ai/v2/account/smart-stats
+
+This experimental endpoint is under active development and its behavior may change without notice. Use with caution in production environments.
+
+Retrieve smart stats given username.
+Query Parameters
+ParameterTypeRequiredDefaultDescriptionusernamestringYesAccount username to get stats for
+Responses
+200 OK
+json{
+  "success": true,
+  "data": {
+    "followerCount": 0,
+    "smartFollowerCount": 0,
+    "averageReach": 0,
+    "averageEngagement": 0,
+    "smartFollowingCount": 0
+  }
+}
+```
+
+| Field | Type | Required |
+|---|---|---|
+| followerCount | double | No |
+| smartFollowerCount | double | No |
+| averageReach | double | Yes |
+| averageEngagement | double | Yes |
+| smartFollowingCount | double | Yes |
+
+**401 Unauthorized**
+
+**404 User not found**
+
+---
+
+## Top Mentions
+```
+GET https://api.elfa.ai/v2/data/top-mentions
+Returns the most significant mentions for a given ticker symbol, ranked by relevance and engagement within a specified time window.
+Query Parameters
+ParameterTypeRequiredDefaultDescriptiontickerstringYesThe ticker symbol to get mentions for. Prefixing with $ will only return cashtag matches.timeWindowstringNo1hTime window for mentions (e.g., "1h", "24h", "7d")fromdoubleNoStart date (unix timestamp)todoubleNoEnd date (unix timestamp)pagedoubleNo1Page number for paginationpageSizedoubleNo10Number of items per pagerepostsbooleanNoInclude reposts
+Responses
+200 OK
+json{
+  "success": true,
+  "data": [
+    {
+      "tweetId": "string",
+      "link": "string",
+      "likeCount": 0,
+      "repostCount": 0,
+      "viewCount": 0,
+      "quoteCount": 0,
+      "replyCount": 0,
+      "bookmarkCount": 0,
+      "mentionedAt": "string",
+      "type": "repost",
+      "repostBreakdown": {
+        "ct": 0,
+        "smart": 0
+      },
+      "account": {
+        "isVerified": true,
+        "username": "string"
+      }
+    }
+  ],
+  "metadata": {
+    "pageSize": 0,
+    "page": 0,
+    "total": 0
+  }
+}
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| tweetId | string | Yes | |
+| link | string | Yes | |
+| likeCount | double (nullable) | Yes | |
+| repostCount | double (nullable) | Yes | |
+| viewCount | double (nullable) | Yes | |
+| quoteCount | double (nullable) | Yes | |
+| replyCount | double (nullable) | Yes | |
+| bookmarkCount | double (nullable) | Yes | |
+| mentionedAt | string | Yes | |
+| type | string | Yes | Possible values: [repost, post, quote, reply] |
+| repostBreakdown.ct | double | Yes | |
+| repostBreakdown.smart | double | Yes | |
+| account.isVerified | boolean | Yes | |
+| account.username | string | Yes | |
+
+**401 Unauthorized**
+
+---
+
+## Multi Keyword Mentions Search
+```
+GET https://api.elfa.ai/v2/data/keyword-mentions
+Search mentions by keywords OR account name with time period.
+Query Parameters
+ParameterTypeRequiredDefaultDescriptionkeywordsstringNoUp to 5 keywords to search for, separated by commas (optional) 
+
+---

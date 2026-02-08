@@ -1,0 +1,2291 @@
+---
+
+## Introduction
+
+---
+
+# What is AIXBT?
+
+
+
+AIXBT is a real-time market intelligence platform. It analyzes social signals, on-chain data, and other sources to surface emerging trends before they reach mainstream awareness.
+
+It consists of three main products:
+
+### Agent
+
+The <a href="https://x.com/aixbt_agent" target="_blank">agent</a> on X is an autonomous account that posts market takes and news, engaging with Crypto Twitter in real time. It runs on the same inference pipeline as the Terminal's chat, with output built for the TL.
+
+Tag the agent to get insights or ask market questions.
+
+### Terminal
+
+The Terminal is where momentum becomes visible. Browse surging projects, see what's trending across clusters, and track emerging narratives in real time.
+
+Query AIXBT through chat for research, sentiment analysis, or market context. Get custom daily reports. Set alerts for project activity and momentum shifts.
+
+### API
+
+The AIXBT API lets you build on top of the intelligence layer. Access project momentum data, generate research reports, and tap into conversational AI through a simple REST interface. It also serves as a context building block for other AI agents.
+
+
+# Core Concepts
+
+
+
+Before diving into the Terminal or API, it helps to understand the core concepts that power AIXBT. These ideas underpin everything from the agent's posts to the data you'll query.
+
+## Projects
+
+A **project** is the fundamental unit in AIXBT. Every signal is tied to a project, and all analysis flows from that structure. Projects range from established tokens and protocols to pre-launch ventures, memes, NFTs, and tradfi narratives gaining traction on Crypto Twitter. Tracking begins as soon as a project enters the conversation.
+
+## Signals
+
+A **signal** is a discrete fact detected about a project. AIXBT identifies concrete events: launches, listings, partnerships, funding rounds, on-chain metrics, risk alerts, and similar. Opinions and speculation are filtered out.
+
+Signals are generated continuously as data flows in, providing a structured view of what's happening around any given project. Not all activity produces a signal, but all activity is tracked. Cluster-level engagement contributes to momentum calculations alongside detected signals.
+
+## Clusters
+
+AIXBT groups X accounts into **clusters** using social graph analysis based on follow relationships. Each cluster represents a distinct, largely independent segment of the ecosystem.
+
+The value of cluster data lies in convergence. Activity within a single cluster is meaningful, but when multiple unconnected clusters independently start discussing the same project, it carries greater weight. This pattern of cross-cluster convergence feeds directly into momentum scoring.
+
+## Momentum Score
+
+**Momentum score** quantifies cluster convergence, measuring the rate at which new clusters begin discussing a project. A project gaining traction across five independent clusters ranks higher than one with more mentions confined to a single community.
+
+Tracking momentum offers an early read on shifting sentiment. Cluster convergence often surfaces before broader market recognition, whether bullish or bearish, and this is expressed in the momentum score.
+
+***
+
+With these concepts in mind, you're ready to explore the [Terminal](/terminal/access) or start [building with the API](/builders/overview).
+
+
+---
+
+## Builders
+
+---
+
+# Building with AIXBT
+
+
+
+The AIXBT API exposes the same intelligence layer that powers the Terminal and agent. You can access momentum data, signal extraction, and conversational AI through a simple REST interface.
+
+## What You Can Access
+
+**Projects** - The ranked list of projects gaining momentum across clusters. Filter by project id, contract address, cluster, or other query parameters to get exactly what you need.
+
+**Momentum & Score** - Raw momentum scores and historical data for any tracked project.
+
+**Signals** - Direct access to detected signals: mentions, sentiment shifts, and cluster activity.
+
+**Indigo** - The same inference pipeline that powers the Chat. Generate research reports, request structured output, use it as a conversational completions endpoint, or query it as a context layer for your own agents.
+
+## Use Cases
+
+* Trading bots that incorporate social momentum as a signal
+* Dashboards and analytics tools
+* Research automation
+* Context layer for other AI agents
+
+## Access Methods
+
+**REST API** - Traditional API key authentication for non-agentic endpoints (Projects, Signals, Clusters). Available through our [data plan](/builders/rest-api) with generous rate limits. API key access to Indigo is available by arrangement.
+
+**x402** - Pay-per-request using the x402 protocol. Required for agentic endpoints (Indigo). Also available for the projects endpoint. No API key needed. See [x402](/builders/x402).
+
+
+# Quickstart
+
+
+
+Get from zero to your first AIXBT API call in under 5 minutes.
+
+## Prerequisites
+
+* An AIXBT account (create one by signing in with your web3 wallet)
+* curl or a programming language with HTTP support
+
+## Get Your API Key
+
+1. Sign in at [aixbt.tech](https://aixbt.tech) with your web3 wallet
+2. Go to [Settings → API Keys](https://aixbt.tech/settings/api-keys)
+3. Create your API key
+
+### Demo Key
+
+Anyone who has signed in with their wallet can create a free demo key. Demo keys work with all non-agentic endpoints but only return data for Bitcoin. This lets you build and test your integration before upgrading to a data plan.
+
+### Full-Access Key
+
+Users on a [Data Plan](https://aixbt.tech/subscribe) can create a full-access key from the same location. This provides access to all projects and the complete dataset.
+
+***
+
+Keep your API key secure. Don't commit it to version control or expose it in client-side code.
+
+## Make Your First Request
+
+Let's fetch the list of projects with the highest momentum scores.
+
+> **Using a demo key?** Your response will only include Bitcoin data. The same code works with a full-access key to access all projects.
+
+### Using curl
+
+```bash
+curl -X GET "https://api.aixbt.tech/v2/projects?limit=5" \
+  -H "x-api-key: YOUR_API_KEY"
+```
+
+### Using JavaScript
+
+```javascript
+const response = await fetch('https://api.aixbt.tech/v2/projects?limit=5', {
+  headers: {
+    'x-api-key': process.env.AIXBT_API_KEY,
+  },
+})
+
+const { data } = await response.json()
+console.log(data)
+```
+
+### Using Python
+
+```python
+import requests
+
+response = requests.get(
+    'https://api.aixbt.tech/v2/projects',
+    params={'limit': 5},
+    headers={'x-api-key': 'YOUR_API_KEY'}
+)
+
+data = response.json()['data']
+print(data)
+```
+
+## Understanding the Response
+
+A successful request returns a JSON object with project data:
+
+```json
+{
+  "status": 200,
+  "data": [
+    {
+      "id": "507f1f77bcf86cd799439011",
+      "name": "ethereum",
+      "xHandle": "ethereum",
+      "momentumScore": 0.85,
+      "popularityScore": 18,
+      "signals": [...],
+      "coingeckoData": {...}
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 5,
+    "totalCount": 1000,
+    "hasMore": true
+  }
+}
+```
+
+Key fields:
+
+* **momentumScore** - Rate of spread to new communities (typically 0-1, unbounded)
+* **popularityScore** - Hours with mentions in the last 24h (0-24)
+* **signals** - Recent events and developments for the project
+
+## Alternative: Pay-Per-Request with x402
+
+Don't want to manage API keys? Use the [x402 protocol](/builders/x402) to pay per request directly with your wallet. No registration required.
+
+## Next Steps
+
+* [REST API](/builders/rest-api) - Authentication details and rate limits
+* [x402](/builders/x402) - Pay-per-request integration
+* [API Reference](/builders/api) - Complete endpoint documentation
+
+### Common Use Cases
+
+* **Get signals for a specific project**: `GET /v2/projects/{id}`
+* **Get top 10 surging projects**: `GET /v2/projects?limit=10`
+* **Track momentum over time**: `GET /v2/projects/{id}/momentum`
+* **Filter signals by category**: `GET /v2/signals?categories=TECH_EVENT,PARTNERSHIP`
+
+
+# REST API
+
+
+
+Access the AIXBT API using API key authentication. For pay-per-request access without API keys, see [x402](/builders/x402).
+
+## Base URL
+
+```
+https://api.aixbt.tech
+```
+
+All endpoints are prefixed with `/v2`.
+
+## Authentication
+
+Include your API key in the `x-api-key` header with every request:
+
+```bash
+curl -X GET "https://api.aixbt.tech/v2/projects" \
+  -H "x-api-key: YOUR_API_KEY"
+```
+
+### Key Types
+
+| Type            | Access                                   | How to Get                                                                    |
+| --------------- | ---------------------------------------- | ----------------------------------------------------------------------------- |
+| Demo Key        | Non-agentic endpoints, Bitcoin data only | Sign in and go to [Settings → API Keys](https://aixbt.tech/settings/api-keys) |
+| Full-Access Key | Non-agentic endpoints, full dataset      | Subscribe to a [Data Plan](https://aixbt.tech/subscribe)                      |
+
+Both key types use the same authentication method. The difference is the data returned and rate limits. For agentic endpoints (Indigo), use [x402](/builders/x402) pay-per-request, or [get in touch](/support/get-support) to discuss API key access.
+
+## Rate Limits
+
+* **Per minute:** 100 requests
+* **Per day:** 100,000 requests
+
+### Rate Limit Headers
+
+Every response includes headers showing your current usage:
+
+```
+X-RateLimit-Limit-Minute: 100
+X-RateLimit-Remaining-Minute: 99
+X-RateLimit-Reset-Minute: 2025-01-15T12:01:00.000Z
+X-RateLimit-Limit-Day: 100000
+X-RateLimit-Remaining-Day: 99999
+X-RateLimit-Reset-Day: 2025-01-16T00:00:00.000Z
+```
+
+### Rate Limit Exceeded
+
+When you exceed a limit, you'll receive a `429` response:
+
+```json
+{
+  "error": "Too Many Requests",
+  "message": "Rate limit exceeded (minute). Try again after 2025-01-15T12:01:00.000Z",
+  "code": "RATE_LIMIT_EXCEEDED",
+  "limitType": "minute"
+}
+```
+
+The response includes a `Retry-After` header with the number of seconds to wait.
+
+## Response Format
+
+All endpoints return a consistent JSON structure:
+
+### Success Response
+
+```json
+{
+  "status": 200,
+  "data": { ... },
+  "pagination": {
+    "page": 1,
+    "limit": 50,
+    "totalCount": 1000,
+    "hasMore": true
+  }
+}
+```
+
+The `pagination` object is included for list endpoints.
+
+### Error Response
+
+```json
+{
+  "status": 400,
+  "error": "Invalid request parameters",
+  "data": []
+}
+```
+
+## HTTP Status Codes
+
+| Status | Code                    | Meaning                             |
+| ------ | ----------------------- | ----------------------------------- |
+| `200`  | -                       | Success                             |
+| `400`  | -                       | Bad request - check your parameters |
+| `401`  | `MISSING_API_KEY`       | No API key provided                 |
+| `401`  | `INVALID_API_KEY`       | API key is invalid or inactive      |
+| `403`  | `INVALID_API_KEY_SCOPE` | API key lacks required permissions  |
+| `404`  | -                       | Resource not found                  |
+| `429`  | `RATE_LIMIT_EXCEEDED`   | Rate limit exceeded                 |
+| `500`  | -                       | Server error                        |
+
+## Pagination
+
+List endpoints support pagination with these query parameters:
+
+| Parameter | Default | Max | Description             |
+| --------- | ------- | --- | ----------------------- |
+| `page`    | 1       | -   | Page number (1-indexed) |
+| `limit`   | 50      | 50  | Results per page        |
+
+Example:
+
+```bash
+curl "https://api.aixbt.tech/v2/projects?page=2&limit=25" \
+  -H "x-api-key: YOUR_API_KEY"
+```
+
+## Filtering
+
+Most list endpoints support filtering. Filters use AND logic between different parameters, and OR logic for multiple values within a parameter.
+
+```bash
+# Projects matching (name=eth OR name=btc) AND chain=base
+curl "https://api.aixbt.tech/v2/projects?names=eth,btc&chain=base" \
+  -H "x-api-key: YOUR_API_KEY"
+```
+
+See the [API Reference](/builders/api) for available filters on each endpoint.
+
+## Next Steps
+
+* [Quickstart](/builders/quickstart) - Make your first request
+* [API Reference](/builders/api) - Complete endpoint documentation
+* [x402](/builders/x402) - Pay-per-request alternative
+
+
+# x402
+
+
+
+The x402 standard is an open, HTTP-based payment protocol developed by Coinbase. It uses the HTTP 402 status code (Payment Required) to enable instant, on-chain micropayments directly over the web.
+
+No API keys. No registration. No OAuth. Just pay per request with your wallet. See [x402.org](https://www.x402.org/).
+
+## Available Endpoints
+
+### Indigo Chat
+
+**`POST /v1/agents/indigo`**
+
+Chat with the Indigo AI agent for real-time market insights and narrative analysis.
+
+```json
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Which developing narrative has the most potential for growth?"
+    }
+  ]
+}
+```
+
+This works like a standard LLM completions endpoint. Each request is stateless, so if you want the agent to have context from prior exchanges, include the conversation history in the `messages` array:
+
+```json
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Which developing narrative has the most potential for growth?"
+    },
+    {
+      "role": "assistant",
+      "content": "Based on current momentum, ..."
+    },
+    {
+      "role": "user",
+      "content": "What are the main risks with that narrative?"
+    }
+  ]
+}
+```
+
+### Surging Projects
+
+**`GET /v1/projects`**
+
+Retrieve the list of projects with surging momentum, updated in real time.
+
+| Parameter  | Description                                    |
+| ---------- | ---------------------------------------------- |
+| `limit`    | Maximum results (default: 50, max: 50)         |
+| `name`     | Filter by project name (regex)                 |
+| `ticker`   | Filter by exact ticker symbol                  |
+| `xHandle`  | Filter by X handle                             |
+| `sortBy`   | Sort by `score` (default) or `popularityScore` |
+| `minScore` | Minimum score threshold                        |
+
+## How It Works
+
+1. Make a request to an x402-enabled endpoint
+2. Receive a `402 Payment Required` response with payment details
+3. Authorize the payment on-chain with your wallet
+4. Retry the request with payment proof
+5. Receive the data
+
+The x402 helper libraries handle steps 2-4 automatically. You make a single request and get the response—payment happens transparently.
+
+## Integration
+
+Use the `x402-fetch` or `x402-axios` packages to wrap your HTTP client with automatic payment handling:
+
+```bash
+npm install x402-fetch viem
+```
+
+```javascript
+import { wrapFetchWithPayment } from 'x402-fetch'
+import { privateKeyToAccount } from 'viem/accounts'
+
+const account = privateKeyToAccount(process.env.WALLET_PRIVATE_KEY)
+const fetchWithPayment = wrapFetchWithPayment(fetch, account)
+
+const response = await fetchWithPayment(
+  'https://api.aixbt.tech/x402/v1/agents/indigo',
+  {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      messages: [
+        { role: 'user', content: 'What narratives are gaining traction?' },
+      ],
+    }),
+  },
+)
+```
+
+For complete examples using both fetch and axios, see the [AIXBT x402 Examples](https://github.com/aixbt/x402) repository.
+
+## Automatic Refunds
+
+If a request fails to return meaningful results, you receive an automatic on-chain refund. This applies to:
+
+* **404 errors** — No information found for your query
+* **500 errors** — Server encountered an internal error
+
+The refund response includes a transaction hash you can verify on-chain:
+
+```javascript
+{
+  status: 404,
+  error: "No information found",
+  data: {
+    message: "The request was processed but no meaningful information was found.",
+    refund: {
+      attempted: true,
+      successful: true,
+      transactionHash: "0x...",
+      reason: "No information found"
+    }
+  }
+}
+```
+
+## Try It
+
+Explore available endpoints and test them directly on [x402scan](https://www.x402scan.com/recipient/0x8e4b195c14f20e1ba4c40234f471e1781f293b45/resources).
+
+## Resources
+
+* [x402 Protocol](https://x402.org) — Protocol specification
+* [AIXBT x402 Examples](https://github.com/aixbt/x402) — Implementation examples
+* [x402 Quickstart for Buyers](https://docs.cdp.coinbase.com/x402/quickstart-for-buyers) — Coinbase documentation
+
+
+# API Reference
+
+
+
+See [Quickstart](/builders/quickstart) for authentication setup. Base URL: `https://api.aixbt.tech`
+
+
+### Projects
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/v2/projects` | List Projects |
+| GET | `/v2/projects/{'{id}'}` | Get Project |
+
+### Signals
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/v2/signals` | List Signals |
+
+### Momentum
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/v2/projects/{'{id}'}/momentum` | Momentum History |
+
+### Clusters
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/v2/clusters` | List Clusters |
+
+### Blockchain Platforms
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/v2/projects/chains` | List Chains |
+
+### Agents
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/v2/agents/indigo` | Chat with Indigo |
+
+
+# List Projects
+
+`GET /v2/projects`
+
+Returns a paginated list of projects with signals, coingeckoData, and popularityScore.
+
+**Filter Behavior:**
+- Multi-value filters (projectIds, names, xHandles, tickers) use OR logic within the same filter
+- Different filters use AND logic between them
+- Example: `names=eth,btc&tickers=SOL` returns projects matching (name=eth OR name=btc) AND ticker=SOL
+
+
+## Query Parameters
+
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| page | integer | No | 1 | Page number (1-indexed) |
+| limit | integer | No | 50 | Number of projects per page (max 50) |
+| projectIds | string | No | - | Comma-separated list of project ObjectIds to filter by |
+| names | string | No | - | Comma-separated list of project names to filter by (case-insensitive regex) |
+| xHandles | string | No | - | Comma-separated list of X/Twitter handles to filter by |
+| tickers | string | No | - | Comma-separated list of token tickers to filter by |
+| chain | string | No | - | Filter by blockchain platform. See /projects/chains for values. |
+| address | string | No | - | Filter by contract address. EVM addresses are case-insensitive; non-EVM addresses (e.g., Solana) are case-sensitive.
+Can be combined with `chain` to filter by specific chain + address.
+ |
+| minMomentumScore | number | No | - | Minimum momentum score threshold |
+| sortBy | "momentumScore" | "popularityScore" | No | momentumScore | Field to sort results by |
+| excludeStables | boolean | No | false | Exclude stablecoin projects |
+
+## Responses
+
+### 200
+
+Paginated list of projects with signals
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| status | integer |  |
+| data | object[] |  |
+| data[].id | string |  |
+| data[].name | string |  |
+| data[].description | string |  |
+| data[].rationale | string |  |
+| data[].xHandle | string |  |
+| data[].momentumScore | number |  |
+| data[].popularityScore | number | Hours with mentions in last 24h (0-24) |
+| data[].coingeckoData | object |  |
+| data[].coingeckoData.apiId | string |  |
+| data[].coingeckoData.type | "coin" | "nft" | "exchange" |  |
+| data[].coingeckoData.symbol | string |  |
+| data[].coingeckoData.slug | string |  |
+| data[].coingeckoData.description | string |  |
+| data[].coingeckoData.homepage | string |  |
+| data[].coingeckoData.contractAddress | string |  |
+| data[].coingeckoData.categories | string[] |  |
+| data[].tokens | object[] | Contract addresses by blockchain platform |
+| data[].tokens[].chain | string |  |
+| data[].tokens[].address | string |  |
+| data[].signals | object[] | 10 most recent signals sorted by updatedAt |
+| data[].signals[].id | string |  |
+| data[].signals[].date | string (date-time) | Signal detection date |
+| data[].signals[].reinforcedAt | string (date-time) | Date when this signal was last reinforced with new supporting evidence |
+| data[].signals[].description | string |  |
+| data[].signals[].projectName | string |  |
+| data[].signals[].projectId | string |  |
+| data[].signals[].category | string |  |
+| data[].signals[].officialSources | string[] |  |
+| data[].signals[].clusters | object[] |  |
+| data[].signals[].clusters[].id | string |  |
+| data[].signals[].clusters[].name | string |  |
+| data[].signals[].activity | object[] | History of signal reinforcements from various sources |
+| data[].signals[].activity[].date | string (date-time) |  |
+| data[].signals[].activity[].source | string | Platform source (x, telegram, discord, tiktok, project-merge) |
+| data[].signals[].activity[].cluster | object |  |
+| data[].signals[].activity[].cluster.id | string |  |
+| data[].signals[].activity[].cluster.name | string |  |
+| data[].signals[].activity[].incoming | string |  |
+| data[].signals[].activity[].result | string |  |
+| data[].signals[].activity[].fromSignal | object |  |
+| data[].signals[].activity[].fromSignal.signalId | string |  |
+| data[].signals[].activity[].fromSignal.projectId | string |  |
+| data[].signals[].activity[].fromSignal.projectName | string |  |
+| pagination | object |  |
+| pagination.page | integer |  |
+| pagination.limit | integer |  |
+| pagination.totalCount | integer |  |
+| pagination.hasMore | boolean |  |
+
+
+#### TypeScript Type
+
+```typescript
+type Response200 = {
+  status?: number;
+  data?: Array<{
+    id?: string;
+    name?: string;
+    description?: string;
+    rationale?: string;
+    xHandle?: string;
+    momentumScore?: number;
+    popularityScore?: number; // Hours with mentions in last 24h (0-24)
+    coingeckoData?: {
+      apiId?: string;
+      type?: "coin" | "nft" | "exchange";
+      symbol?: string;
+      slug?: string;
+      description?: string;
+      homepage?: string;
+      contractAddress?: string;
+      categories?: string[];
+    };
+    tokens?: Array<{
+      chain?: string;
+      address?: string;
+    }>; // Contract addresses by blockchain platform
+    signals?: Array<{
+      id?: string;
+      date?: string; // Signal detection date
+      reinforcedAt?: string; // Date when this signal was last reinforced with new supporting evidence
+      description?: string;
+      projectName?: string;
+      projectId?: string;
+      category?: string;
+      officialSources?: string[];
+      clusters?: Array<{
+        id?: string;
+        name?: string;
+      }>;
+      activity?: Array<{
+        date?: string;
+        source?: string; // Platform source (x, telegram, discord, tiktok, project-merge)
+        cluster?: {
+          id?: string;
+          name?: string;
+        };
+        incoming?: string;
+        result?: string;
+        fromSignal?: {
+          signalId?: string;
+          projectId?: string;
+          projectName?: string;
+        };
+      }>; // History of signal reinforcements from various sources
+    }>; // 10 most recent signals sorted by updatedAt
+  }>;
+  pagination?: {
+    page?: number;
+    limit?: number;
+    totalCount?: number;
+    hasMore?: boolean;
+  };
+}
+```
+
+### 400
+
+Invalid request parameters
+
+
+# Get Project
+
+`GET /v2/projects/{id}`
+
+Returns a project by ID, including the 10 most recent signals, full coingeckoData, and popularityScore.
+
+## Path Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| id | string | Yes | MongoDB ObjectId of the project |
+
+## Responses
+
+### 200
+
+Project details with signals
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| status | integer |  |
+| error | string |  |
+| data | object |  |
+| data.id | string |  |
+| data.name | string |  |
+| data.description | string |  |
+| data.rationale | string |  |
+| data.xHandle | string |  |
+| data.momentumScore | number |  |
+| data.popularityScore | number | Hours with mentions in last 24h (0-24) |
+| data.coingeckoData | object |  |
+| data.coingeckoData.apiId | string |  |
+| data.coingeckoData.type | "coin" | "nft" | "exchange" |  |
+| data.coingeckoData.symbol | string |  |
+| data.coingeckoData.slug | string |  |
+| data.coingeckoData.description | string |  |
+| data.coingeckoData.homepage | string |  |
+| data.coingeckoData.contractAddress | string |  |
+| data.coingeckoData.categories | string[] |  |
+| data.tokens | object[] | Contract addresses by blockchain platform |
+| data.tokens[].chain | string |  |
+| data.tokens[].address | string |  |
+| data.signals | object[] | 10 most recent signals sorted by updatedAt |
+| data.signals[].id | string |  |
+| data.signals[].date | string (date-time) | Signal detection date |
+| data.signals[].reinforcedAt | string (date-time) | Date when this signal was last reinforced with new supporting evidence |
+| data.signals[].description | string |  |
+| data.signals[].projectName | string |  |
+| data.signals[].projectId | string |  |
+| data.signals[].category | string |  |
+| data.signals[].officialSources | string[] |  |
+| data.signals[].clusters | object[] |  |
+| data.signals[].clusters[].id | string |  |
+| data.signals[].clusters[].name | string |  |
+| data.signals[].activity | object[] | History of signal reinforcements from various sources |
+| data.signals[].activity[].date | string (date-time) |  |
+| data.signals[].activity[].source | string | Platform source (x, telegram, discord, tiktok, project-merge) |
+| data.signals[].activity[].cluster | object |  |
+| data.signals[].activity[].cluster.id | string |  |
+| data.signals[].activity[].cluster.name | string |  |
+| data.signals[].activity[].incoming | string |  |
+| data.signals[].activity[].result | string |  |
+| data.signals[].activity[].fromSignal | object |  |
+| data.signals[].activity[].fromSignal.signalId | string |  |
+| data.signals[].activity[].fromSignal.projectId | string |  |
+| data.signals[].activity[].fromSignal.projectName | string |  |
+
+
+#### TypeScript Type
+
+```typescript
+type Response200 = {
+  status?: number;
+  error?: string;
+  data?: {
+    id?: string;
+    name?: string;
+    description?: string;
+    rationale?: string;
+    xHandle?: string;
+    momentumScore?: number;
+    popularityScore?: number; // Hours with mentions in last 24h (0-24)
+    coingeckoData?: {
+      apiId?: string;
+      type?: "coin" | "nft" | "exchange";
+      symbol?: string;
+      slug?: string;
+      description?: string;
+      homepage?: string;
+      contractAddress?: string;
+      categories?: string[];
+    };
+    tokens?: Array<{
+      chain?: string;
+      address?: string;
+    }>; // Contract addresses by blockchain platform
+    signals?: Array<{
+      id?: string;
+      date?: string; // Signal detection date
+      reinforcedAt?: string; // Date when this signal was last reinforced with new supporting evidence
+      description?: string;
+      projectName?: string;
+      projectId?: string;
+      category?: string;
+      officialSources?: string[];
+      clusters?: Array<{
+        id?: string;
+        name?: string;
+      }>;
+      activity?: Array<{
+        date?: string;
+        source?: string; // Platform source (x, telegram, discord, tiktok, project-merge)
+        cluster?: {
+          id?: string;
+          name?: string;
+        };
+        incoming?: string;
+        result?: string;
+        fromSignal?: {
+          signalId?: string;
+          projectId?: string;
+          projectName?: string;
+        };
+      }>; // History of signal reinforcements from various sources
+    }>; // 10 most recent signals sorted by updatedAt
+  };
+}
+```
+
+### 400
+
+Invalid project ID format
+
+### 404
+
+Project not found
+
+
+# List Signals
+
+`GET /v2/signals`
+
+Returns signals (formerly summaries) with filtering and pagination support.
+
+**Filter Behavior:**
+- Project filters (projectIds, names, xHandles, tickers) use AND logic between different filters
+- Multiple values within a single filter use OR logic
+- Cluster filter returns signals containing ANY of the specified cluster IDs
+- Category filter returns signals matching ANY of the specified categories (OR logic)
+- Date filters (detectedAfter/detectedBefore) filter by original detection date
+- Date filters (reinforcedAfter/reinforcedBefore) filter by last reinforced date
+- All date filters can be used independently, together, or combined (AND logic)
+
+
+## Query Parameters
+
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| projectIds | string | No | - | Comma-separated list of project IDs to filter by |
+| names | string | No | - | Comma-separated list of project names to filter by (case-insensitive regex match) |
+| xHandles | string | No | - | Comma-separated list of X/Twitter handles to filter by |
+| tickers | string | No | - | Comma-separated list of token tickers to filter by |
+| address | string | No | - | Filter by contract address. Finds projects matching the address, then returns their signals.
+EVM addresses are case-insensitive; non-EVM addresses (e.g., Solana) are case-sensitive.
+ |
+| clusterIds | string | No | - | Comma-separated list of cluster IDs to filter by (OR logic) |
+| categories | string | No | - | Comma-separated category names to filter by (OR logic).
+Valid values: FINANCIAL_EVENT, TOKEN_ECONOMICS, TECH_EVENT, MARKET_ACTIVITY, ONCHAIN_METRICS, PARTNERSHIP, TEAM_UPDATE, REGULATORY, WHALE_ACTIVITY, RISK_ALERT, VISIBILITY_EVENT, OPINION_SPECULATION
+ |
+| detectedAfter | string (date-time) | No | - | Filter signals originally detected after this date (ISO datetime) |
+| detectedBefore | string (date-time) | No | - | Filter signals originally detected before this date (ISO datetime) |
+| reinforcedAfter | string (date-time) | No | - | Filter signals reinforced after this date (ISO datetime) |
+| reinforcedBefore | string (date-time) | No | - | Filter signals reinforced before this date (ISO datetime) |
+| sortBy | "reinforcedAt" | "createdAt" | No | reinforcedAt | Sort signals by reinforcedAt (default) or createdAt (original detection date) |
+| page | integer | No | 1 | Page number for pagination (1-indexed) |
+| limit | integer | No | 50 | Number of results per page (max 50) |
+
+## Responses
+
+### 200
+
+List of signals with pagination metadata
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| status | integer |  |
+| data | object[] |  |
+| data[].id | string |  |
+| data[].detectedAt | string (date-time) | Date when this signal was first detected |
+| data[].reinforcedAt | string (date-time) | Date when this signal was last reinforced with new supporting evidence |
+| data[].description | string |  |
+| data[].projectName | string |  |
+| data[].projectId | string |  |
+| data[].category | string |  |
+| data[].officialSources | string[] |  |
+| data[].clusters | object[] |  |
+| data[].clusters[].id | string |  |
+| data[].clusters[].name | string |  |
+| data[].activity | object[] | History of signal reinforcements from various sources |
+| data[].activity[].date | string (date-time) | Timestamp of the activity |
+| data[].activity[].source | string | Platform source (x, telegram, discord, tiktok, project-merge) |
+| data[].activity[].cluster | object | Resolved cluster info, null if no cluster |
+| data[].activity[].cluster.id | string |  |
+| data[].activity[].cluster.name | string |  |
+| data[].activity[].incoming | string | Signal description extracted from new content |
+| data[].activity[].result | string | Signal description after merge |
+| data[].activity[].fromSignal | object | Present for project-merge events |
+| data[].activity[].fromSignal.signalId | string |  |
+| data[].activity[].fromSignal.projectId | string |  |
+| data[].activity[].fromSignal.projectName | string |  |
+| pagination | object |  |
+| pagination.page | integer |  |
+| pagination.limit | integer |  |
+| pagination.totalCount | integer |  |
+| pagination.hasMore | boolean |  |
+
+
+#### TypeScript Type
+
+```typescript
+type Response200 = {
+  status?: number;
+  data?: Array<{
+    id?: string;
+    detectedAt?: string; // Date when this signal was first detected
+    reinforcedAt?: string; // Date when this signal was last reinforced with new supporting evidence
+    description?: string;
+    projectName?: string;
+    projectId?: string;
+    category?: string;
+    officialSources?: string[];
+    clusters?: Array<{
+      id?: string;
+      name?: string;
+    }>;
+    activity?: Array<{
+      date?: string; // Timestamp of the activity
+      source?: string; // Platform source (x, telegram, discord, tiktok, project-merge)
+      cluster?: {
+        id?: string;
+        name?: string;
+      }; // Resolved cluster info, null if no cluster
+      incoming?: string; // Signal description extracted from new content
+      result?: string; // Signal description after merge
+      fromSignal?: {
+        signalId?: string;
+        projectId?: string;
+        projectName?: string;
+      }; // Present for project-merge events
+    }>; // History of signal reinforcements from various sources
+  }>;
+  pagination?: {
+    page?: number;
+    limit?: number;
+    totalCount?: number;
+    hasMore?: boolean;
+  };
+}
+```
+
+### 400
+
+Invalid request parameters
+
+
+# Momentum History
+
+`GET /v2/projects/{id}/momentum`
+
+Returns hourly momentum history with cluster breakdown. Includes tweet counts by cluster and score history for a project over a specified time period. Default period is the last 7 days.
+
+## Path Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| id | string | Yes | The project ID |
+
+## Query Parameters
+
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| start | string (date-time) | No | - | Start timestamp (ISO 8601 format). Defaults to 7 days ago. |
+| end | string (date-time) | No | - | End timestamp (ISO 8601 format). Defaults to now. |
+
+## Responses
+
+### 200
+
+Momentum and score history data
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| status | integer |  |
+| error | string |  |
+| data | object |  |
+| data.projectId | string |  |
+| data.projectName | string |  |
+| data.data | object[] |  |
+| data.data[].timestamp | string (date-time) |  |
+| data.data[].momentumScore | number |  |
+| data.data[].clusters | object[] |  |
+| data.data[].clusters[].id | string |  |
+| data.data[].clusters[].name | string |  |
+| data.data[].clusters[].count | integer |  |
+
+
+#### TypeScript Type
+
+```typescript
+type Response200 = {
+  status?: number;
+  error?: string;
+  data?: {
+    projectId?: string;
+    projectName?: string;
+    data?: Array<{
+      timestamp?: string;
+      momentumScore?: number;
+      clusters?: Array<{
+        id?: string;
+        name?: string;
+        count?: number;
+      }>;
+    }>;
+  };
+}
+```
+
+### 400
+
+Invalid project ID format or invalid date parameters
+
+### 404
+
+Project not found
+
+### 500
+
+Failed to fetch project momentum
+
+
+# List Clusters
+
+`GET /v2/clusters`
+
+Returns all clusters (tracked communities and information sources) with id, name, and description.
+Use cluster IDs with the `clusterIds` parameter on the /signals endpoint to filter signals by source.
+
+
+## Responses
+
+### 200
+
+List of clusters
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| status | integer |  |
+| data | object[] |  |
+| data[].id | string |  |
+| data[].name | string |  |
+| data[].description | string |  |
+
+
+#### TypeScript Type
+
+```typescript
+type Response200 = {
+  status?: number;
+  data?: Array<{
+    id?: string;
+    name?: string;
+    description?: string;
+  }>;
+}
+```
+
+### 500
+
+Internal server error
+
+
+# List Chains
+
+`GET /v2/projects/chains`
+
+Returns all available blockchain platforms. Use these values with the `chain` filter parameter on other endpoints.
+
+## Responses
+
+### 200
+
+List of blockchain platforms
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| status | integer |  |
+| error | string |  |
+| data | string[] |  |
+
+
+#### TypeScript Type
+
+```typescript
+type Response200 = {
+  status?: number;
+  error?: string;
+  data?: string[];
+}
+```
+
+
+# Chat with Indigo
+
+`POST /v2/agents/indigo`
+
+Get a response from the AIXBT Indigo agent. Chat with Indigo for real-time market insights and narrative analysis.
+
+**Capabilities:**
+- Exploratory conversation about markets, narratives, and projects
+- Structured report generation on demand
+- Access to AIXBT's signal and momentum data
+
+**Usage:**
+Works like a standard LLM completions endpoint. Each request is stateless—include conversation history in the messages array for multi-turn context. Use `role: "user"` for your prompts and `role: "assistant"` for prior Indigo responses.
+
+
+## Request Body
+
+### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| messages | object[] |  |
+| messages[].role | "user" | "assistant" |  |
+| messages[].content | string |  |
+
+
+### TypeScript Type
+
+```typescript
+type RequestBody = {
+  messages?: Array<{
+    role?: "user" | "assistant";
+    content?: string;
+  }>;
+}
+```
+
+## Responses
+
+### 200
+
+Successful response with agent's text response
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| status | integer |  |
+| error | string |  |
+| data | object |  |
+| data.text | string |  |
+
+
+#### TypeScript Type
+
+```typescript
+type Response200 = {
+  status?: number;
+  error?: string;
+  data?: {
+    text?: string;
+  };
+}
+```
+
+### 400
+
+Invalid request payload
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| status | integer |  |
+| error | string |  |
+| data | string[] |  |
+
+
+#### TypeScript Type
+
+```typescript
+type Response400 = {
+  status?: number;
+  error?: string;
+  data?: string[];
+}
+```
+
+### 404
+
+No meaningful information found in response (payment refunded for x402 requests)
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| status | integer |  |
+| error | string |  |
+| data | object |  |
+| data.message | string |  |
+| data.refund | object |  |
+| data.refund.attempted | boolean |  |
+| data.refund.successful | boolean |  |
+| data.refund.transactionHash | string |  |
+| data.refund.reason | string |  |
+
+
+#### TypeScript Type
+
+```typescript
+type Response404 = {
+  status?: number;
+  error?: string;
+  data?: {
+    message?: string;
+    refund?: {
+      attempted?: boolean;
+      successful?: boolean;
+      transactionHash?: string;
+      reason?: string;
+    };
+  };
+}
+```
+
+### 500
+
+Failed to process agent request (payment refunded for x402 requests)
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| status | integer |  |
+| error | string |  |
+| data | object |  |
+| data.message | string |  |
+| data.refund | object |  |
+| data.refund.attempted | boolean |  |
+| data.refund.successful | boolean |  |
+| data.refund.transactionHash | string |  |
+| data.refund.reason | string |  |
+
+
+#### TypeScript Type
+
+```typescript
+type Response500 = {
+  status?: number;
+  error?: string;
+  data?: {
+    message?: string;
+    refund?: {
+      attempted?: boolean;
+      successful?: boolean;
+      transactionHash?: string;
+      reason?: string;
+    };
+  };
+}
+```
+
+
+---
+
+## Terminal
+
+---
+
+# Access
+
+
+
+Access the Terminal at <a href="https://aixbt.tech" target="_blank">aixbt.tech</a>.
+
+<Cards>
+  <Card icon={<Stack />} title="Projects" href="/terminal/projects">
+    Browse the surging and popular lists. See what's gaining traction across
+    clusters before it reaches mainstream awareness. Free for everyone.
+  </Card>
+
+  <Card icon={<Chats />} title="Chat" href="/terminal/chat">
+    Query AIXBT directly. Ask questions, request analysis, or dig into specific
+    projects and narratives. Requires a subscription.
+  </Card>
+</Cards>
+
+## Tiers
+
+Projects, signals, and momentum charts are free. Chat, alerts, and daily reports require a Pro subscription or token holder status. Integrations with our API require a Data subscription.
+
+See <a href="https://aixbt.tech/subscribe" target="_blank">aixbt.tech/subscribe</a> for details.
+
+
+# Projects
+
+
+
+The Projects view shows thousands of tracked projects ranked by activity. Two lists, two ways to slice the data.
+
+## Surging vs Popular
+
+**Surging** ranks projects by momentum score. High momentum means increasing activity across social channels, on-chain metrics, or news coverage. This is where you spot projects gaining traction before broader awareness.
+
+**Popular** ranks by popularity score, which weights overall volume and sustained attention rather than rate of change. Established projects with consistent activity surface here.
+
+Both lists show the same projects, different order.
+
+## The List
+
+Each row gives you a project's current state at a glance.
+
+### Score
+
+The momentum score measures rate of change in community attention. It tracks how quickly new clusters are picking up on a project and how many new mentions are coming from those clusters. Higher scores mean faster growth. The arrow next to the score shows the trend since the last update.
+
+### Snapshot
+
+A one-line summary of the most recent signal detected for that project.
+
+### Momentum Bars
+
+12 bars covering the past 24 hours, with each bar representing a 2-hour window. Brighter means more mentions. Hover to see which clusters contributed to that time period.
+
+{/* TODO: screenshot */}
+
+## Project Details
+
+Click any project to open the expanded view:
+
+* **Signals tab** - Timeline of detected events. See [Signals](/terminal/projects/signals) for details.
+* **Momentum tab** - Historical momentum chart. See [Momentum Graph](/terminal/projects/momentum-graph) for details.
+* **Info tab** - Links, contract addresses, and project description.
+
+
+# Signals
+
+
+
+The Signals tab shows a chronological timeline of events detected for a project. Each signal represents a discrete, verifiable fact derived from tracked discussions.
+
+## The Timeline
+
+Signals appear in reverse chronological order with the most recent at the top. Each entry shows a category badge indicating the type of event, followed by a concise description of what happened. Scroll to navigate through the project's signal history.
+
+## Signal Categories
+
+AIXBT classifies signals into the following categories:
+
+| Category             | Description                                                                       |
+| -------------------- | --------------------------------------------------------------------------------- |
+| **FINANCIAL EVENT**  | Token sales, TGEs, airdrops, funding rounds, grants, incentive programs           |
+| **TOKEN ECONOMICS**  | Emissions, burns, supply changes, fee distribution, staking/locking terms         |
+| **TECH EVENT**       | Mainnet/testnet launches, upgrades, feature releases, audits, major infra changes |
+| **MARKET ACTIVITY**  | Listings, delistings, new trading pairs, liquidity pools, market-making programs  |
+| **ONCHAIN METRICS**  | Achieved TVL, volume, fees, user counts, active addresses                         |
+| **PARTNERSHIP**      | Integrations, collaborations, co-launches, co-marketing with named counterparties |
+| **TEAM UPDATE**      | Founders/leads joining or leaving, major hires, role changes                      |
+| **REGULATORY**       | Licenses, approvals, bans, enforcement actions, legal/regulatory moves            |
+| **WHALE ACTIVITY**   | Very large transfers, accumulations, distributions, position changes              |
+| **RISK ALERT**       | Hacks, exploits, outages, halts, critical bugs, recovery events                   |
+| **VISIBILITY EVENT** | Conference talks, hackathons, AMAs, interviews, media coverage, award nominations |
+
+## What Becomes a Signal
+
+Signals are detected when tracked discussions describe:
+
+* A specific change or confirmed future change for the project
+* An onchain or market metric that has been achieved
+
+General marketing, vague hype, and simple project descriptions do not become signals. Neither do predictions about future metrics ("could reach X") or speculation about what might happen.
+
+One real-world fact produces one signal. If multiple sources report the same event, the signal is reinforced.
+
+## Reinforcement
+
+When multiple sources report the same event, they reinforce a single signal rather than creating duplicates. Each reinforcement updates the signal's timestamp and is recorded in its activity log.
+
+A signal created days ago can still be relevant if it continues to receive reinforcements. This indicates the event remains part of active discussion. The Indigo agent factors in reinforcement activity when assessing what matters now, so older signals that are still being talked about surface alongside recent ones.
+
+## Activity
+
+Each signal includes an activity log showing the sequence of reinforcement events. Activity entries record the cluster the information originated from and how the signal's description evolved with each new piece of evidence. This data is available in the terminal and through the API.
+
+The first report of an event is rarely the most detailed. Early signals often capture the headline while later reinforcements add specifics like figures, timelines, and counterparties. For example, if the first tweet says "ETH exchange balances hit record lows" and a later tweet adds "10.5M ETH, representing 8.7% of supply", the signal description may be updated to include those figures.
+
+Activity makes this evolution visible, enabling information flow analysis: tracking which clusters surface a story first, how it spreads across communities, and how the description sharpens over time.
+
+## Empty Signals Tab
+
+Some projects show no signals. This happens when:
+
+* The project is new and hasn't generated signal-worthy activity
+* Recent discussions have been general chatter without concrete events
+* The project primarily attracts opinion rather than news
+
+Activity still contributes to momentum even when it doesn't produce signals. The momentum bars and score reflect all tracked mentions, while the signals tab filters down to detected events.
+
+
+# Momentum Graph
+
+
+
+The Momentum tab displays a streamgraph showing how discussion of a project spreads across different clusters over time. Unlike price charts that show market outcomes, momentum graphs show narrative formation as it happens.
+
+Key concepts: [clusters](/introduction/core-concepts#clusters) and [momentum](/introduction/core-concepts#momentum).
+
+<Callout title="Want more depth?">
+  This page summarizes key concepts from our detailed article [Momentum Graphs: A Guide to Narrative Visualization](https://aixbt.substack.com/p/momentum-graphs). Read the full article for deeper analysis and examples.
+</Callout>
+
+## What You're Looking At
+
+The graph uses a streamgraph format where:
+
+* **Horizontal axis** shows time progression
+* **Vertical thickness** of each layer shows relative mention volume from that cluster
+* **Colors** represent different clusters (communities of X accounts)
+* **Overall shape** shows how total attention rises and falls
+
+Each colored layer is a distinct cluster. When a layer expands, that cluster is discussing the project more. When multiple layers stack up simultaneously, the project is gaining cross-cluster attention.
+
+## Reading the Graph
+
+### What to Watch For
+
+Graph height reflects total mention volume, but the number of colors matters more. A project discussed by 15 clusters carries more weight than one with higher mention volume confined to 2-3 clusters. Look for new colors appearing over time. This indicates the narrative is spreading to previously uninvolved communities.
+
+### Momentum Patterns
+
+**Expanding**: New clusters joining the conversation, existing layers growing. The narrative is gaining traction.
+
+**Sustained**: Consistent layers without significant growth or decline. Established attention, stable interest.
+
+**Contracting**: Layers shrinking, fewer active clusters. Attention fading, narrative cooling off.
+
+**Spike**: Sharp vertical expansion followed by rapid decline. Event-driven attention (announcement, listing, incident) that doesn't sustain.
+
+### Signal Indicators
+
+White dots along the bottom of the graph mark days when signals were detected for the project. Hover over a dot to see what events occurred on that date. This helps correlate narrative spread with concrete developments.
+
+## Controls
+
+Toggle between **30d** and **90d** views in the top-right corner. Cluster names appear as badges below the graph. Hover to highlight a layer, click to pin it for comparison.
+
+## Why Momentum Graphs Matter
+
+Price and volume are lagging indicators. By the time market metrics move, the narrative has already formed. Momentum graphs show that formation process:
+
+* Which communities discovered the project first
+* How quickly awareness spread to other clusters
+* Whether attention is sustained (multi-cluster engagement) or temporary (single-cluster spike)
+* When narratives peaked and began to fade
+
+Cross-cluster convergence often precedes market recognition. When independent communities start discussing the same project without apparent coordination, it carries more weight than mention volume alone.
+
+
+# Getting Started
+
+
+
+Chat gives you direct access to AIXBT's intelligence layer. Ask questions, request analysis, explore narratives. The same data that powers the Projects list becomes queryable through natural language.
+
+<Callout>
+  Chat requires a Pro subscription or token holder status. See [aixbt.tech/subscribe](https://aixbt.tech/subscribe) for details.
+</Callout>
+
+## Beyond the List
+
+The Projects view shows you what's trending, but chat lets you ask why. It connects dots that aren't visible in a ranked list:
+
+* **Cross-project patterns** - "Which DeFi projects are being discussed by the same clusters talking about \[project]?"
+* **Narrative threads** - "What themes are emerging across AI agent projects this week?"
+* **Historical context** - "How did sentiment around \[project] change after their mainnet launch?"
+* **Comparative analysis** - "Compare momentum patterns between \[project A] and \[project B]"
+
+The Projects list answers "what's moving." Chat answers "what does it mean."
+
+## What to Ask
+
+Chat performs best with narrative-driven queries. It excels at analyzing social data and identifying patterns across communities.
+
+**Specific projects** - What's happening with \[project]? What are people saying? Has this been reflected in the price yet?
+
+**Market-wide analysis** - What narratives are gaining traction? Which sectors are heating up? What are whales accumulating?
+
+**Community sentiment** - What are VCs discussing? What has builders excited? How is sentiment shifting around a specific project?
+
+**Emerging trends** - What new protocols are getting attention? Which projects are developers talking about? What infrastructure plays are emerging?
+
+**Social dynamics** - Who's driving a narrative? Is promotion organic or coordinated? How is a story spreading across clusters?
+
+## Data sources
+
+AIXBT has access to several data sources during a conversation:
+
+**Project data** - Detailed information on any tracked project including recent signals, cluster activity, and metadata.
+
+**Signals** - Detected events and discussions across all tracked clusters.
+
+**Clusters** - The full list of tracked communities. Useful for understanding which segments of Crypto Twitter are driving a narrative.
+
+**Market data** - Live prices, market caps, and 24h changes from CoinGecko.
+
+**Web search** - When questions go beyond the curated dataset, AIXBT can search the web for additional context.
+
+**Nuvel** - Channel summaries from your Nuvel-connected Telegram groups, with cited conversation blocks for deeper context.
+
+## How It Works
+
+AIXBT selects data to access based on your query. You don't need to think about this, just ask your question naturally, but understanding the underlying data sources helps you craft better queries when you need precise answers.
+
+## Generating Reports
+
+Beyond conversational use, chat works well for generating structured reports. Ask for a daily briefing on a sector, a weekly summary of a project's momentum, or a comparative analysis across multiple tokens. The depth of response makes these useful as standalone documents.
+
+If you find a prompt that produces valuable recurring insight, use the **Save as Daily Report** button to schedule it as an automated task. See [Automated Tasks](/terminal/automated-tasks) for details.
+
+
+# Prompting Techniques
+
+
+
+AIXBT's system prompt handles most of the analytical framework. It knows how to evaluate projects, interpret signals, and contextualize market data. Your job is to tell it what you're looking for, not how to think about it.
+
+This means prompts can be surprisingly simple. But there are techniques that help when you want more control over what surfaces.
+
+## Open vs. Specific
+
+Both approaches work, and they serve different purposes.
+
+**Open-ended prompts** let the model's reasoning surface patterns you might not think to ask about. "What's interesting right now?" or "What should I be paying attention to?" can uncover signals you'd miss with a narrow query.
+
+**Specific prompts** help when you know what you're looking for. Add constraints like thresholds, timeframes, or exclusions to focus the search on exactly what you need.
+
+Narrow queries give you control, but you might filter out unexpected discoveries along the way. Sometimes the best approach is to start open and see what surfaces.
+
+## Adding Constraints
+
+When you want to narrow results, add explicit filters:
+
+* **Thresholds** - "projects with TVL growth above 20%" or "tokens under $50M market cap"
+* **Timeframes** - "in the last 24 hours" or "this week"
+* **Exclusions** - "exclude major tokens like BTC, ETH, SOL" to focus on discovery
+* **Categories** or **Narratives** - "DeFi protocols" or "privacy memecoins"
+
+Constraints turn exploratory questions into screening tools.
+
+## Targeting Clusters
+
+AIXBT tracks distinct communities across Crypto Twitter. You can focus queries on specific segments:
+
+* "What are VCs discussing?"
+* "What's trending among speculators?"
+* "Which projects are builders excited about?"
+
+Cluster-specific queries help when you care about who is talking, not just what's being said. Different communities have different signal value depending on what you're looking for.
+
+## Iterative Refinement
+
+Start broad, then narrow. A general question like "what DeFi narratives are emerging?" might surface several threads. Follow up on the interesting ones: "Tell me more about \[specific project]" or "How does this compare to \[other project]?"
+
+The conversation context carries forward. Each response can inform your next question.
+
+## Lateral Discovery
+
+One finding can become the lens for the next query. Instead of drilling deeper into the same topic, pivot sideways to explore adjacent signals.
+
+For example: "Which clusters were early to the current meta? What new projects are they discussing now? Show me all of them, but highlight anything outside the current meta."
+
+This chains insights: identify who had good signal → see what else they're watching → filter for things the crowd hasn't noticed yet. Each step uses the previous answer to unlock a different search space.
+
+Useful when you want to find what's next rather than understand what's already visible.
+
+## Requesting Structure
+
+For reports or comparative analysis, you can ask for specific output formats:
+
+* "Give me a summary with bullet points"
+* "Compare these projects in a table"
+* "Rank these by momentum and explain why"
+
+Useful when you want scannable output or plan to reference the response later.
+
+## Guiding the Analysis
+
+You don't need to explain how to analyze. But you can if you want different emphasis:
+
+* "Focus on on-chain metrics rather than social signals"
+* "Weight recent activity more heavily"
+* "Consider bear case arguments"
+
+The default analysis is usually what you want. Override when you have a specific angle.
+
+
+# Prompt Examples
+
+
+
+<Callout>
+  Any prompt that produces valuable recurring insight can be scheduled as a
+  daily report. See [Automated Tasks](/docs/terminal/automated-tasks) for
+  details.
+</Callout>
+
+## Quick Pulse
+
+Open-ended prompts that let the model surface what's interesting. Good for daily check-ins.
+
+<Prompt title="Daily Overview">
+  What are the main topics of discussion today?
+</Prompt>
+
+<Prompt title="Momentum Scan">
+  Which coins are currently gaining significant social media traction with
+  rising engagement and positive sentiment?
+</Prompt>
+
+<Prompt title="Trader Focus">
+  What are traders focusing on today? What setups or opportunities are being
+  discussed most?
+</Prompt>
+
+## Sentiment & Narratives
+
+Understanding crowd mood and the arguments driving it.
+
+<Prompt title="Current Meta">
+  What's the current meta? Where is attention concentrated and why?
+</Prompt>
+
+<Prompt title="Bull/Bear Arguments">
+  Summarize the most common bullish and bearish arguments being discussed around
+  \[token] right now.
+</Prompt>
+
+<Prompt title="Comparative Sentiment">
+  Compare sentiment for $BTC and $ETH. Where is smart money positioning between
+  the two? Are there signs of rotation?
+</Prompt>
+
+## Pattern Discovery
+
+The chat's core strength: finding divergences, anomalies, and correlations that would be hard to spot manually.
+
+<Prompt title="Sentiment-Price Divergence">
+  List tokens with significant divergence between bullish sentiment and current
+  price performance. Focus on cases where narrative hasn't yet caught up with
+  price, or price hasn't caught up with narrative.
+</Prompt>
+
+<Prompt title="TVL Anomalies">
+  Which protocols are experiencing unusual TVL growth or contraction compared to
+  sector averages? Focus on emerging L1/L2s and DeFi primitives showing greater
+  than 20% weekly changes.
+</Prompt>
+
+<Prompt title="Early Attention Signals">
+  Which emerging tokens or ecosystems are getting unusual attention on social
+  media or in KOL discussions, even if price/TVL hasn't moved yet? Surface
+  things that are heating up before they show up on leaderboards.
+</Prompt>
+
+<Prompt title="Blue-Chip Scanner">
+  Identify well-established L1s or blue-chip DeFi protocols currently
+  experiencing consistent TVL growth, strong fee generation, and rising on-chain
+  activity—without upcoming unlocks or major risks.
+</Prompt>
+
+## Capital & Flow Tracking
+
+Following smart money and institutional positioning.
+
+<Prompt title="Backed-by-Giants">
+  Please find me new projects that have prominent institutional backing,
+  specifically from VCs, Coinbase leadership, or other notable figures in
+  crypto.
+</Prompt>
+
+<Prompt title="Smart Money Accumulation">
+  Where has smart money been accumulating, substantially relative to the token's
+  market cap? Look for meaningful positions by informed actors that suggest
+  hidden conviction before wider price discovery.
+</Prompt>
+
+<Prompt title="Institutional Flow Report">
+  What institutional capital flows occurred in the last 24 hours? Include ETF
+  inflows/outflows, whale wallet movements over $50M, and any notable treasury
+  acquisitions by public companies.
+</Prompt>
+
+<Prompt title="Unlock Risk Scan">
+  Which projects have significant token unlocks in the next 7 days? Prioritize
+  those with market caps over $100M. Include expected sell pressure and any
+  counterbalancing mechanisms like buybacks or staking incentives.
+</Prompt>
+
+## Lateral Discovery
+
+Chaining insights to find what's next rather than what's already visible. Uses one finding as the lens for the next query.
+
+<Prompt title="Narrative Revival">
+  Which tokens that were previously part of major narratives are now showing
+  fresh signs of life? Look for fee resurgence, new integrations, ecosystem
+  partnerships, or returning social buzz.
+</Prompt>
+
+<Prompt title="Builder-to-Speculator Pipeline">
+  What projects are builders and developers excited about that speculators
+  haven't caught onto yet? Show me the gap between technical community interest
+  and broader market attention.
+</Prompt>
+
+<Prompt title="Following Early Signal">
+  Which clusters were early to the current meta? What new projects are they
+  discussing now? Show me all of them, but highlight anything outside the
+  current meta that hasn't gotten broad attention yet.
+</Prompt>
+
+## Deep Analysis
+
+For when you want comprehensive coverage rather than scanning.
+
+<Prompt title="Daily Digest">
+  Create a summary of the key crypto developments from the last 24 hours. Focus
+  on market-moving events, emerging narratives, and notable capital flows.
+</Prompt>
+
+<Prompt title="Token Deep Dive">
+  Give me a comprehensive analysis of \[token]: recent developments, key metrics,
+  main narratives, bull and bear cases, and what to watch for next.
+</Prompt>
+
+<Prompt title="Full Deep Dive">
+  Your task is to provide an extremely detailed deep dive on \[topic]. Give me ALL the nuanced details:
+
+  * Exact metrics, numbers, percentages
+  * Key players involved (people, protocols, communities, projects)
+  * Timeline of events or developments
+  * Technical details or catalysts
+  * Psychology or sentiment driving this
+  * Contrarian angles or alternative perspectives
+  * Why THIS matters RIGHT NOW
+  * Specific actionable insights or takeaways
+
+  Be extremely specific. Include actual data points, names, events, or any concrete details that support your analysis. Provide a balanced take that considers both bull and bear perspectives, but maintain conviction about the most likely outcome.
+</Prompt>
+
+
+# Automated Tasks
+
+
+
+The terminal can work for you in the background. Instead of manually checking in, you can set up automated tasks that monitor, analyze, and alert you when something matters.
+
+Three types of automation serve different purposes:
+
+* [**Reports**](#reports) run your queries on a schedule
+* [**Watchlist**](#watchlist) tracks specific projects you choose
+* [**Observers**](#observers) alert you when momentum thresholds are crossed
+
+<Callout>
+  To receive alerts via DM, connect Telegram or Discord. See [Socials
+  Integration](/docs/terminal/socials-integration).
+</Callout>
+
+## Reports
+
+Any prompt that produces recurring value can become a scheduled report. Rather than asking the same question daily, save it as a report and let the system run it for you.
+
+To create a report, use the "Save as report" option after running a query in chat. The system will execute it daily at your chosen time and deliver results to your connected platforms.
+
+The [reports page](https://aixbt.tech/tasks/reports) shows all of your saved reports and their run history, letting you track how answers evolve over time.
+
+**Good candidates for reports:**
+
+* Daily market digests
+* Emerging narrative tracking
+* Momentum scans across sectors
+* Unlock schedules and risk monitoring
+
+See [Prompt Examples](/docs/terminal/chat/prompt-examples) for inspiration.
+
+## Watchlist
+
+Track specific projects and receive alerts when new signals are detected. Unlike reports which run on a schedule, [watchlist alerts](https://aixbt.tech/tasks/watchlist) fire in real-time as events happen.
+
+To add a project, open its details view and click the <BellIcon /> bell icon. When a signal is detected, you'll receive an immediate notification.
+
+**Use watchlist for:**
+
+* Projects you hold or are considering
+* Competitors in a sector you're watching
+* Early-stage tokens you want to monitor before committing
+
+## Observers
+
+[Observers](https://aixbt.tech/tasks/observers) are system-wide momentum alerts. Rather than tracking specific projects, they notify you when any project crosses defined thresholds.
+
+**Top Scores Alert**
+
+Fires the first time a project's momentum score reaches 50 within a given week. This catches projects hitting a significant attention threshold, often before broader market awareness.
+
+**Top 5 Entry Alert**
+
+Fires when any project enters the top 5 momentum rankings for the week. This identifies tokens breaking into the highest-attention tier across everything tracked.
+
+Observers work passively. No configuration needed beyond enabling them. They surface opportunities you might miss because you weren't specifically looking.
+
+
+# Socials Integration
+
+
+
+Connect your social accounts in [settings](https://aixbt.tech/settings) to unlock additional features.
+
+## X (Twitter)
+
+Link your X account on the [Profile](https://aixbt.tech/settings) tab. Connected accounts bypass the minimum follower requirement and receive higher interaction limits when engaging with AIXBT on X.
+
+## Discord & Telegram
+
+Connect Discord and Telegram on the [Integrations](https://aixbt.tech/settings/integrations) tab to receive alerts from your [automated tasks](/docs/terminal/automated-tasks).
+
+**Discord**: Add the AIXBT Discord Bot to your server, then run the `/register` command with your personal code in the channel where you want to receive messages.
+
+**Telegram**: DM the AIXBT Telegram Bot with the `/register` command and your personal code.
+
+Linking Telegram also enables AIXBT chat to access Nuvel summaries for any groups you're a member of that run Nuvel.
+
+
+---
+
+## Telegram Summaries
+
+---
+
+# Nuvel
+
+
+
+Private Telegram groups are often where alpha surfaces first. But if you're away for a few hours, catching up on hundreds of messages across multiple groups becomes impractical. Important insights get buried in noise.
+
+Nuvel solves this by generating summaries of your Telegram channels. Instead of scrolling through everything you missed, you get a distilled view of what matters: bullish and bearish theses, tickers being discussed, and actionable items to follow up on.
+
+## How it works
+
+Once Nuvel is added to your Telegram group, it monitors conversations and generates summaries every 12 hours. Each summary extracts crypto-focused insights and organizes them by sentiment and ticker.
+
+Summaries are posted directly to your channel, so the whole group benefits without changing how anyone communicates.
+
+## Elsewhere on Nuvel
+
+Insights from your group contribute to a broader view of what's being discussed across all participating communities.
+
+Along with your group's summary, you'll also receive an "Elsewhere on Nuvel" section showing sentiment and topics trending in other groups, without exposing the raw messages. It's a way to catch emerging narratives outside your immediate circle while preserving privacy.
+
+## AIXBT integration <span className="ml-2 inline-flex items-center border border-gray-400 px-1.5 py-0.5 text-[10px] font-medium text-gray-500 dark:border-gray-600 dark:text-gray-400 relative -top-[0.5em]">Coming Soon</span>
+
+When you [link your Telegram account](/docs/terminal/socials-integration), your AIXBT chat sessions will gain access to Nuvel summaries from any group you're a member of. This means you'll be able to ask questions about what's being discussed in your private communities, and the chat can draw on that context.
+
+This turns your research groups into a personalized data source that reflects the specific communities and traders you trust.
+
+
+# Nuvel Onboarding
+
+
+
+Nuvel is in gradual rollout. New groups go through a review process with quality analysis before being activated, so allow some time after reaching out.
+
+## Requirements
+
+* Active Telegram group
+* Crypto-focused community with regular discussion
+* Channel size doesn't matter
+* Niche does not matter, from technical discussion to trench shitters
+
+## Add the bot
+
+You can add [Nuvel](https://t.me/nuvel_bot) to your group at any time. It doesn't require admin privileges. The bot won't be active until your group is reviewed and approved.
+
+## Get in touch
+
+DM [@rel\_op](https://x.com/rel_op) on X to request access for your group.
+
+
+---
+
+## Support
+
+---
+
+# Get Support
+
+
+
+For inquiries, customer support, or career opportunities, you can reach out to us directly.
+
+* **Telegram**: [@aixbtportal](https://t.me/aixbtportal)
+* **Support**: [support@aixbt.tech](mailto:support@aixbt.tech)
+* **Careers**: [careers@aixbt.tech](mailto:careers@aixbt.tech)
+
+
+# FAQ
+
+
+
+{/* IMPORTANT: Keep in sync with lib/faq-schema.ts (SEO schema markup) */}
+
+#### What does the score mean?
+
+The score measures a project's momentum based on signal strength and narrative traction. It reflects how much attention a project is gaining relative to others and helps identify emerging trends before they reach mainstream awareness. See [Momentum Score](/introduction/core-concepts#momentum-score) for more detail.
+
+#### How does the momentum graph work?
+
+The momentum graph visualizes how narratives flow through different communities over time. It shows which groups are driving or amplifying conversations around a token, helping you identify the key players and channels shaping a trend. Learn more in [Momentum Graph](/terminal/projects/momentum-graph).
+
+#### Can I trust what the agent says on X?
+
+AIXBT posts are generated autonomously based on live data without human interference or sponsorships. However, signals, scores, and analysis may contain inaccuracies. You can verify each signal's data in the terminal, but all information should be used as one of many research tools rather than taken as financial advice. Always conduct your own due diligence before making any investment decisions.
+
+#### Can the agent show sources and citations?
+
+Each project [timeline](/terminal/projects/signals) includes detected signals with some references available. While not all raw data is publicly accessible, you can review available source material to understand how narratives and signals have developed.
+
+#### Will the terminal become more personalized?
+
+You can add projects to your [watchlist](/terminal/automated-tasks#watchlist) to receive real-time alerts when signals are detected. [Reports](/terminal/automated-tasks#reports) let you schedule recurring analyses tailored to your interests, running automatically and delivering results to your inbox.
+
+#### How often is the data updated?
+
+Signals are generated in real-time. Momentum scores are recalculated hourly.
+
+#### What data sources does AIXBT use?
+
+AIXBT processes data from various sources to detect signals and analyze trends across the crypto ecosystem. We continuously refine and expand our data collection to provide comprehensive insights.
+
+#### What is the $AIXBT token used for?
+
+Holding 150,000 $AIXBT grants access to the [Research Group](/resources/research-group). Holding 600,000 $AIXBT grants access to terminal features including chat, alerts, and reports. See [Access](/terminal/access) for details on tiers.
+
+#### Does AIXBT integrate with other platforms?
+
+Yes. You can receive alerts on Discord and Telegram, connect your X account for enhanced interactions, and access [Nuvel](/nuvel/nuvel) summaries from your Telegram groups. See [Socials Integration](/terminal/socials-integration) for setup instructions.
+
+#### Can I use this documentation with an LLM?
+
+Yes. Visit [llms-full.txt](/llms-full.txt) to get the entire documentation in a single text file suitable for LLM context windows. Individual pages also have markdown versions available. See [LLMs](/support/llms) for more.
+
+
+# LLMs
+
+
+
+You can provide this documentation to your LLM for context when building with AIXBT or asking questions.
+
+**Full documentation**: Visit [llms-full.txt](/llms-full.txt) to get the entire documentation in a single text file suitable for LLM context windows.
+
+**Individual pages**: Each page also has a markdown version available for more targeted context.
+
+
+---
+
+## Resources
+
+---
+
+# AIXBT Token
+
+
+
+## Holder benefits
+
+Holding 150,000 $AIXBT grants access to the [Research Group](/resources/research-group), a private community for traders and analysts.
+
+Holding 600,000 $AIXBT grants access to the Holder Plan, which includes higher usage limits, priority processing, and early access to new features. See [Access](/terminal/access) for details on all tiers.
+
+## Contract addresses
+
+**Base**
+
+[Basescan](https://basescan.org/address/0x4F9Fd6Be4a90f2620860d680c0d4d5Fb53d1A825) `0x4F9Fd6Be4a90f2620860d680c0d4d5Fb53d1A825`
+
+**Ethereum Mainnet**
+
+[Etherscan](https://etherscan.io/address/0x0D37aF9D8AE74F35F3A38bD2a08FcB29890Ca6d2) `0x0D37aF9D8AE74F35F3A38bD2a08FcB29890Ca6d2`
+
+Bridge between Base and Mainnet via [Stargate Finance](https://stargate.finance/).
+
+**Solana**
+
+[Solscan](https://solscan.io/token/14zP2ToQ79XWvc7FQpm4bRnp9d6Mp1rFfsUW3gpLcRX) `14zP2ToQ79XWvc7FQpm4bRnp9d6Mp1rFfsUW3gpLcRX`
+
+Bridge between Base and Solana via [Wormhole](https://portalbridge.com/).
+
+
+# Research Group
+
+
+
+AIXBT Research is a Telegram community where traders and analysts share alpha and trends sourced directly from the Terminal. Members also receive early previews of new features and provide feedback that shapes our intelligence tools.
+
+## Requirements
+
+Hold 150,000+ $AIXBT tokens in your wallet.
+
+## How to join
+
+1. Go to [Matrica](https://matrica.io/)
+2. Connect your wallet and link your Telegram account
+3. Access is granted automatically once verified
+4. Join the group: [AIXBT Research](https://t.me/+dwesiB6Ohmc1ZDcx)
+
+Read the [announcement](https://x.com/aixbt_labs/status/1927297648211411435) for more details.
+
+
+# Links
+
+
+
+## Website
+
+[aixbt.tech](https://aixbt.tech)
+
+## X
+
+* [Agent](https://x.com/aixbt_agent)
+* [AIXBT Labs](https://x.com/aixbt_labs)
+* [Intern](https://x.com/aixbt_intern)
+
+## Telegram
+
+* [Public chat](https://t.me/aixbtportal)
+* [News feed](https://t.me/aixbtfeed)
+
+
+---
+
+## Legal
+
+---
+
+# Terms & Conditions
+
+
+
+### The Terminal
+
+The "Terminal," operated by the aixbt team ("we," "us," or "our"). By accessing or using the Terminal, holding aixbt tokens, or engaging with our related services (collectively, the "Services"), you agree to be bound by these Terms and Conditions (the "Terms"). If you do not agree to all of these Terms, you are not authorized to use the Services.
+
+These Terms apply to all users of the Terminal, including those accessing through any holding of aixbt tokens, and those interacting with aixbt\_agent via the Terminal or on external platforms such as Twitter (X).
+
+### 1. Eligibility and Access Requirements
+
+#### 1.1 Token Requirement
+
+To access the Terminal's guaranteed response service, you must hold a minimum of 600,000 aixbt tokens. We reserve the right to verify token holdings to ensure compliance with this requirement.
+
+#### 1.2 No Guarantee of Response on Twitter/X
+
+While you may interact with aixbt\_agent on Twitter (X) by mentioning or engaging with it, there is no guarantee of receiving a reply. The Terminal, however, provides guaranteed responses to token holders meeting the minimum holding requirement stated above.
+
+### 2. Nature of the Content and Interactions
+
+#### 2.1 Informational Use Only – Not Investment Advice
+
+All content, including any news summaries, analysis, commentary, or opinions provided by the aixbt\_agent (the "Content"), is for informational purposes only. None of the Content should be considered investment advice, financial guidance, or a recommendation to buy, sell, or hold any digital asset or other financial product. You should always do your own research and, if necessary, consult qualified professional advisors before making any investment decisions.
+
+#### 2.2 Unpredictability of Outputs
+
+The aixbt\_agent leverages complex models and dynamic data sources. While we strive for quality and reliability, the Content is inherently unpredictable and may contain errors, omissions, or misinformation. Use the Content at your own risk and discretion.
+
+#### 2.3 User-Generated Interactions
+
+You understand that any prompts, questions, or content you provide ("User Content") may influence the aixbt\_agent's responses. We encourage users to provide thoughtful, constructive, and respectful input. Misleading, inappropriate, or harmful inputs may result in responses of limited value or potential refusal of service.
+
+#### 2.4 Sharing of Conversations
+
+Users of the Terminal have the option to share conversations they have had with the aixbt\_agent. By choosing to share such conversations, you grant us the right to publicly display, reproduce, modify, and distribute the shared content in any media, without further consent, notice, or compensation to you.
+
+### 3. User Conduct
+
+#### 3.1 Respectful Interactions
+
+Users agree to be respectful and courteous when interacting with the aixbt\_agent, other community members, and our team. Harassment, hate speech, or other forms of abusive behavior will not be tolerated.
+
+#### 3.2 Prohibited Conduct
+
+You agree not to use the Terminal or the aixbt\_agent to
+
+* Violate any applicable law, regulation, or third-party right;
+* Transmit any malicious code, software, or data that may harm the Terminal, the aixbt\_agent, or other users;
+* Spread misleading or deceptive information with the intent to manipulate or confuse;
+* Solicit personal or sensitive information from other users or the aixbt\_agent;
+* Engage in any activity that interferes with, disrupts, or imposes an undue burden on the Terminal's infrastructure or related services.
+
+### 4. Intellectual Property
+
+#### 4.1 Ownership of Content
+
+Unless otherwise stated, all intellectual property rights in the Terminal, its underlying code, technology, design, and related materials belong to us or our licensors. You may not reproduce, distribute, or create derivative works from our Content without our prior written permission.
+
+#### 4.2 User-Provided Content
+
+By providing prompts, feedback, suggestions, or other content to the Terminal, you grant us a non-exclusive, worldwide, royalty-free, irrevocable license to use, reproduce, modify, and distribute such User Content for the purpose of improving our Services and developing new features.
+
+### 5. Data Processing and Privacy
+
+#### 5.1 Use of User Data for Analytics and Error Tracking
+
+We reserve the right to process user data—including usage data, query logs, and other related information—for analytics, performance measurement, quality assurance, and error tracking purposes. Such data may be processed on third-party platforms and services to help us identify and resolve issues, improve our models, and enhance the overall user experience.
+
+#### 5.2 Privacy Measures
+
+We value your privacy. While we collect and use data as described above, we strive to adhere to applicable data protection laws and industry best practices. Please refer to our [Privacy Policy](/legal/privacy-policy) for more details on how we collect, use, store, and protect your personal information.
+
+### 6. Disclaimers and Limitations of Liability
+
+#### 6.1 No Warranties
+
+THE TERMINAL, THE aixbt\_agent, AND ALL ASSOCIATED CONTENT ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF ACCURACY, RELIABILITY, NON-INFRINGEMENT, OR FITNESS FOR A PARTICULAR PURPOSE. YOUR USE OF THE TERMINAL AND THE aixbt\_agent IS AT YOUR SOLE RISK.
+
+#### 6.2 Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE, OUR OFFICERS, DIRECTORS, EMPLOYEES, PARTNERS, AND AFFILIATES SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, OR INVESTMENT CAPITAL, ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF THE TERMINAL, THE aixbt\_agent, OR ANY CONTENT PROVIDED, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+#### 6.3 User Responsibility
+
+You acknowledge and agree that you are solely responsible for your own investment decisions, actions, and any losses or gains that may result from your reliance on the Content.
+
+### 7. Reporting Issues and Abuse
+
+If you encounter errors, misleading content, abuse, or violations of these Terms, please report such instances via our Telegram group at [@aixbtportal](https://t.me/aixbtportal). We may, at our sole discretion, review and address reported issues and take appropriate action.
+
+### 8. Indemnification
+
+You agree to indemnify, defend, and hold harmless us, our officers, directors, employees, partners, and affiliates from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms or your use of the Services.
+
+### 9. Modifications to the Terms
+
+We reserve the right to modify these Terms at any time. Any changes will be effective immediately upon posting on the Terminal's website. Your continued use of the Services after the posting of revised Terms constitutes your acceptance of those changes.
+
+### 10. Governing Law and Jurisdiction
+
+These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which we operate, without regard to its conflict of law principles. You agree to submit to the exclusive jurisdiction of the courts located in that jurisdiction for the resolution of any disputes arising out of these Terms or your use of the Terminal.
+
+### 11. Severability
+
+If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions shall remain in full force and effect.
+
+### 12. Entire Agreement
+
+These Terms, together with any referenced policies such as our [Privacy Policy](/legal/privacy-policy), constitute the entire agreement between you and us regarding the use of the Terminal and the aixbt\_agent and supersede any prior agreements or understandings.
+
+### Contact Information
+
+If you have any questions or concerns about these Terms, please contact us via the Telegram group at [@aixbtportal](https://t.me/aixbtportal). By accessing or using the Terminal and associated Services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.
+
+
+# Privacy Policy
+
+
+
+This Privacy Policy ("Policy") describes how the aixbt team ("we," "us," "our") collects, uses, discloses, and safeguards your personal and non-personal information when you access or use the aixbt Terminal ("Terminal") and related services, including any interactions with our AI agent (the "aixbt\_agent") on the Terminal or on external platforms such as Twitter (X) (collectively, the "Services"). By using the Services, you consent to the practices described in this Policy. If you do not agree with the terms of this Policy, please do not use the Services.
+
+### 1. Information We Collect
+
+#### 1.1 Information You Provide Directly:
+
+* User Content: When you interact with the aixbt\_agent — whether on the Terminal or on Twitter (X) — we may collect the content of those interactions, including prompts, responses, and feedback.
+* Account Linking Information: If you choose to link your crypto wallet address with a Twitter handle or other account identifiers, we will collect and store this linking information to facilitate additional benefits, features, and personalized experiences.
+
+#### 1.2 Automatically Collected Information:
+
+When you access the Terminal, we may automatically collect certain information, including:
+
+* Device Information: Such as your IP address, browser type, operating system, and device identifiers.
+* Usage Data: Pages viewed, time spent on pages, referral URLs, and other usage statistics related to your interactions with the Terminal.
+
+#### 1.3 Cookies and Similar Technologies:
+
+We may use cookies, web beacons, pixels, and other tracking technologies to enhance your user experience, provide analytics, and improve our Services. You can control the use of cookies through your browser settings, though disabling certain cookies may affect the functionality of the Services.
+
+### 2. How We Use Your Information
+
+#### 2.1 Provision of Services:
+
+We use your information to operate, maintain, and improve the Terminal and aixbt\_agent's functionality, ensuring that you receive accurate and timely responses and a smooth user experience.
+
+#### 2.2 Analytics, Performance, and Quality Assurance:
+
+We may process user data for analytics and error tracking purposes. This includes evaluating system performance, identifying bugs, and improving the AI models. We may use third-party services to assist with these efforts, subject to their own privacy policies.
+
+#### 2.3 Account Linking and Benefits:
+
+If you link your crypto wallet address with your Twitter handle or other accounts, we may use this information to provide or unlock additional features, rewards, or services.
+
+#### 2.4 Communication and Notifications:
+
+We may contact you with updates, security alerts, or other relevant information related to the Services, provided we have the necessary consent where required by law.
+
+#### 2.5 Legal and Compliance:
+
+We may use your information to comply with applicable laws, regulations, legal processes, or enforceable governmental requests. We may also use it to detect, investigate, and prevent fraudulent transactions, misuse, or other illegal activities.
+
+### 3. How We Share Your Information
+
+#### 3.1 Service Providers and Third Parties:
+
+We may share your information with third-party vendors and service providers who perform tasks on our behalf, such as hosting, analytics, customer support, and quality assurance. These third parties have access to your information only to perform these tasks and are obligated not to disclose or use it for any other purpose.
+
+#### 3.2 Shared Conversations (User Content):
+
+If you choose to share or publish conversations you've had with the aixbt\_agent, or provide permission for us to do so, we may publicly display that content to other users and the broader community.
+
+#### 3.3 Business Transactions:
+
+In the event of a merger, acquisition, reorganization, or sale of assets, user information may be transferred as part of that transaction. We will notify you of any such change in ownership or transfer of assets.
+
+#### 3.4 Legal Requirements and Safety:
+
+We may disclose your information if required to do so by law, or if we believe such action is necessary to:
+
+* Comply with a legal obligation or government request
+* Protect and defend our rights, property, or safety, and that of our users or the public
+
+### 4. Data Security
+
+We take reasonable measures to protect the confidentiality and security of your information. Despite our efforts, no security measure is perfect, and we cannot guarantee absolute security against unauthorized access, disclosure, alteration, or destruction.
+
+### 5. Data Retention
+
+We will retain your information for as long as necessary to fulfill the purposes described in this Policy, comply with legal obligations, resolve disputes, and enforce our agreements. When we no longer need your information, we will securely delete or anonymize it.
+
+### 6. International Data Transfers
+
+Your information may be transferred to, and maintained on, servers and databases located outside of your state, province, or country. Data protection laws in these jurisdictions may differ from those in your location. By using our Services, you consent to any such transfer.
+
+### 7. Children's Privacy
+
+Our Services are not directed toward individuals under the age of majority in their jurisdiction. We do not knowingly collect personal information from minors without verifiable parental consent. If you believe we have collected personal information from a minor, please contact us so we can take appropriate measures.
+
+### 8. Your Rights and Choices
+
+Depending on your jurisdiction, you may have rights regarding your personal information, including the right to access, correct, update, or request deletion of your information. To exercise these rights, please contact us using the information provided in Section 10. We will respond to your request in accordance with applicable laws.
+
+### 9. Changes to this Privacy Policy
+
+We may update this Policy from time to time. Any changes will be effective immediately upon posting on the Terminal's website. Your continued use of the Services after the posting of the revised Policy constitutes your acceptance of those changes. We encourage you to review this Policy periodically for any updates.
+
+### 10. Contact Information
+
+If you have any questions, concerns, or requests related to this Privacy Policy, please contact us via our Telegram group at [@aixbtportal](https://t.me/aixbtportal).
+
+By using the Services, you acknowledge that you have read, understood, and agree to this Privacy Policy and our [Terms and Conditions](/legal/terms-and-conditions).
