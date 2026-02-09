@@ -160,15 +160,34 @@ export function checkpointSummary(
   agentsScanned: number,
   violationsFound: number,
   actionsExecuted: number,
-  cycleNumber: number
+  cycleNumber: number,
+  agentDetails?: Array<{ name: string; score: number; violations: number; erc8004Score?: number }>
 ): SocialPost {
-  const content = [
-    `6h Checkpoint #${cycleNumber}`,
-    `Scanned: ${agentsScanned} agents`,
-    `Violations: ${violationsFound}`,
-    `Actions: ${actionsExecuted}`,
-    `All systems operational.`,
-  ].join("\n");
+  const lines = [
+    `Safety Scan #${cycleNumber} complete`,
+    ``,
+  ];
+
+  // Add top agent details (up to 5)
+  if (agentDetails && agentDetails.length > 0) {
+    const top = agentDetails.slice(0, 5);
+    for (const a of top) {
+      const status = a.violations > 0 ? `${a.violations} violation(s)` : "Clean";
+      lines.push(`${a.name}: ${a.score}/1000 — ${status}`);
+    }
+    if (agentDetails.length > 5) {
+      lines.push(`...and ${agentDetails.length - 5} more`);
+    }
+    lines.push(``);
+  }
+
+  lines.push(`${agentsScanned} agents | ${violationsFound} violations | ${actionsExecuted} actions`);
+
+  if (violationsFound === 0) {
+    lines.push(`All monitored agents operating normally.`);
+  }
+
+  const content = lines.join("\n");
 
   const post: SocialPost = {
     platform: "both",
@@ -180,6 +199,54 @@ export function checkpointSummary(
 
   postQueue.push(post);
   console.log(`[SOCIAL] Checkpoint summary queued:\n${content}\n`);
+  return post;
+}
+
+export function agentScanReport(
+  agents: Array<{ name: string; address: string; score: number; erc8004Id?: number; erc8004Score?: number }>,
+  feedbacksTx: Array<{ name: string; txHash: string }>
+): SocialPost {
+  const lines = [
+    `ERC-8004 Agent Safety Report`,
+    ``,
+  ];
+
+  // Show agents with ERC-8004 IDs
+  const erc8004Agents = agents.filter(a => a.erc8004Id);
+  const otherAgents = agents.filter(a => !a.erc8004Id);
+
+  if (erc8004Agents.length > 0) {
+    lines.push(`ERC-8004 verified:`);
+    for (const a of erc8004Agents.slice(0, 3)) {
+      lines.push(`  ${a.name}: safety ${a.score}/1000 (registry score: ${a.erc8004Score ?? "N/A"})`);
+    }
+  }
+
+  if (otherAgents.length > 0) {
+    lines.push(`Ecosystem agents:`);
+    for (const a of otherAgents.slice(0, 3)) {
+      lines.push(`  ${a.name}: safety ${a.score}/1000`);
+    }
+  }
+
+  if (feedbacksTx.length > 0) {
+    lines.push(``);
+    lines.push(`On-chain feedback submitted for ${feedbacksTx.length} agent(s)`);
+    lines.push(`basescan.org/tx/${feedbacksTx[0].txHash}`);
+  }
+
+  const content = lines.join("\n");
+
+  const post: SocialPost = {
+    platform: "both",
+    content,
+    priority: "normal",
+    posted: false,
+    timestamp: new Date().toISOString(),
+  };
+
+  postQueue.push(post);
+  console.log(`[SOCIAL] Agent scan report queued:\n${content}\n`);
   return post;
 }
 

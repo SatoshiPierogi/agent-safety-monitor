@@ -23,6 +23,7 @@ import {
   criticalAlert,
   checkpointSummary,
   dailySummary,
+  agentScanReport,
   publishPosts,
   clearPostQueue,
   getPostQueue,
@@ -390,6 +391,7 @@ export async function executeHeartbeat(): Promise<CycleResult> {
   // ── Phase 4b: ERC-8004 Feedback Submission ──────────────────────────────
   console.log("▶ Phase 4b: ERC-8004 FEEDBACK");
   let feedbacksSubmitted = 0;
+  const feedbackTxHashes: Array<{ name: string; txHash: string }> = [];
 
   for (const agent of memory.agents) {
     const erc8004Id = (agent as any)._erc8004Id;
@@ -415,6 +417,9 @@ export async function executeHeartbeat(): Promise<CycleResult> {
 
       if (result.success) {
         feedbacksSubmitted++;
+        if (result.tx_hash) {
+          feedbackTxHashes.push({ name: agent.name, txHash: result.tx_hash });
+        }
         console.log(`  ✓ Feedback for ${agent.name} (#${erc8004Id}): score=${scoreData.score} tx=${result.tx_hash}`);
       } else {
         console.log(`  ○ Feedback skipped for ${agent.name}: ${result.error}`);
@@ -459,13 +464,38 @@ export async function executeHeartbeat(): Promise<CycleResult> {
     }
   }
 
-  // Checkpoint summary
+  // Checkpoint summary with agent details
+  const agentDetails = memory.agents
+    .map((a) => {
+      const decision = decisions.get(a.address);
+      const violations = scanViolations.get(a.address) || [];
+      return {
+        name: a.name,
+        score: decision?.newScore ?? a.score,
+        violations: violations.length,
+        erc8004Score: (a as any)._erc8004Score,
+      };
+    })
+    .sort((a, b) => a.score - b.score); // worst scores first
+
   checkpointSummary(
     agentsScanned,
     violationsDetected,
     actionsExecuted,
-    memory.stats.totalCycles + 1
+    memory.stats.totalCycles + 1,
+    agentDetails
   );
+
+  // Detailed agent scan report with ERC-8004 data
+  const agentReportData = memory.agents.map((a) => ({
+    name: a.name,
+    address: a.address,
+    score: decisions.get(a.address)?.newScore ?? a.score,
+    erc8004Id: (a as any)._erc8004Id,
+    erc8004Score: (a as any)._erc8004Score,
+  }));
+
+  agentScanReport(agentReportData, feedbackTxHashes);
 
   // Daily summary at 8am UTC
   const currentHour = new Date().getUTCHours();
